@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .sticker{
+      padding-top: 30px;
+      font-size: 40px;
+      text-align: center;
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+
+  
+ 
+</style>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    
+    <i class="fa fa-heart" style="font-size:50px;color:rgb(241, 86, 86);">
+    <b>Quiz Fun</b></i>
+  </div>
+</nav>
+<div class="d-flex align-items-center">
+  <div style="display: flex; align-items: center; gap: 40vh;">
+  <h3 style="padding: 20px 30px;">Welcome To Quiz Fun !<br>
+    <br>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" style="width: 27vh;padding: 5px 10px;border-radius: 10px;">
+      <button type="text" value="submit" class="btn btn-primary" style="width:120px;">Save</button>
+    </form>
+  </h3>
+</div>
+</div>
+    <div class="sticker">
+  <img src="https://cdn-icons-png.flaticon.com/512/1141/1141102.png" alt="Star Sticker" style="height: 15rem;">
+</div>
+
+
+
+
+<div class=" text-center" style="padding-top: 30px;">
+
+<a href="{% url 'create_quiz' %}" style="text-decoration:none; background-color: rgb(253, 236, 236);padding: 12px 20px;margin-top: 50px;border: 2px solid; font-size: 30px;border-radius: 20px;width: 80rem;height: 8rem;color: red;">Create QUIZ</a>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock content %}

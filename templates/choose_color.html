@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Guess My Favourite Color?</h2>
+    <div class="row">
+        {% for color in colors %}
+        <div class="col-md-4 mb-3 text-center">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="color_id" value="{{ color.id }}">
+                <button type="submit" class="btn p-0 border-0 bg-transparent">
+                    <img src="{% static color.image %}" alt="{{ color.name }}"
+                         style="height:200px;width:200px;object-fit:cover;">
+                </button>
+            </form>
+            <h5 class="mt-2">{{ color.name }}</h5>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+    }
+    h1 {
+        color: pink;
+        background-color: white;
+        padding: 10px;
+        text-align: center;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-top: 50px;
+    }
+    button {
+        background-color: rgb(232, 117, 205);
+        color: white;
+        padding: 10px 40px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        height: 70px;
+        width: 180px;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s ease;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    button:hover {
+        background-color: rgb(212, 49, 174);
+
+    }
+    p {
+        font-size: 50px;
+        font-weight: bold;
+        color: black;
+        margin-top: 20px;
+    }
+    .definition {
+        margin-top: 20px;
+        font-size: 18px;
+        color: pink;
+        line-height: 1.6;
+        text-align: center;
+        background:white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+</style>
+ 
+<div class="container text-center">
+    <h2 >
+        <i class="fa fa-heart" style="font-size:100px;color:rgb(241, 86, 86);"></i>
+        <p id="randomnum"></p>
+    </h2>
+
+    <button onclick="showScore()">Calculate</button>
+    <div id="fadetext" style="opacity: 0; transition: opacity 3s;">
+    <h1>
+        Share and Enjoy testing your loved ones!
+        <br>
+        </h1>
+         <p class="definition">
+            Test Your Bond is a fun and engaging way to discover how strong your connection is with someone special
+            whether it’s a friend, a partner, or a loved one. It gives you a playful score that reflects the closeness,
+            trust, and affection you share. While it’s just for entertainment, it’s a lighthearted way to celebrate
+            relationships and enjoy meaningful moments together.
+        </p>
+    
+
+    </div>
+</div>
+
+<script>
+    function showText(){
+        document.getElementById("fadetext").style.opacity = 1; // ✅ Correct opacity
+    }
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function showScore() {
+        document.getElementById('randomnum').innerHTML = "{{ percentage }}%";
+    }
+
+    // Trigger fade-in after 0.5 sec
+    setTimeout(showText, 500);
+</script>
+
+<!-- Font Awesome (v4.7 icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock content %}
