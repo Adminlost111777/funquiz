@@ -83,3 +83,10 @@ class AnswerModel(models.Model):
 
     def __str__(self):
         return str(self.quiz.track_id)
+    
+class Blog(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name

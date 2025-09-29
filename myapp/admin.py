@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Color,Place,Currentmood,Hobbies,Subjects,Flowers,QuizModel,AnswerModel
+from .models import Color,Place,Currentmood,Hobbies,Subjects,Flowers,QuizModel,AnswerModel,Blog
 
 # Not required 
 
@@ -12,3 +12,4 @@ admin.site.register(Subjects)
 admin.site.register(Flowers)
 admin.site.register(QuizModel)
 admin.site.register(AnswerModel)
+admin.site.register(Blog)
