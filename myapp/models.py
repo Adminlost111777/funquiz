@@ -3,6 +3,8 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 
+from dj_admin_plus.fields import HTMLField
+
 
 # Create your models here.
 class Color(models.Model):
@@ -87,7 +89,7 @@ class AnswerModel(models.Model):
 class Blog(models.Model):
     name = models.CharField(max_length=200)
     image = models.CharField(max_length=200)
-    content = models.TextField()
+    content = HTMLField()
     slug = models.SlugField(unique=True)
 
     def __str__(self):
