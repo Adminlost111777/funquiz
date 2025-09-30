@@ -48,6 +48,11 @@ def blog_list(request):
     blogs = Blog.objects.all()
     return render(request,"blog.html",{"blogs": blogs})
 
+def blog_detail(request, id):
+    blog = get_object_or_404(Blog, id=id)
+    context = {'blog': blog}
+    return render(request, 'blog_detail.html', context)
+
 def quiz_view(request):
     session_user = get_session_user(request)
     print("SessionUser:", session_user)
