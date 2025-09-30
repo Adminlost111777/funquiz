@@ -87,6 +87,8 @@ class AnswerModel(models.Model):
 class Blog(models.Model):
     name = models.CharField(max_length=200)
     image = models.CharField(max_length=200)
+    content = models.TextField()
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name

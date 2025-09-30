@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('',views.quiz_view, name='home'),
     path('blog/',views.blog_list,name='blog_list'),
-    path('blog-detail/<int:id>/',views.blog_detail,name='blog_detail'),
+    path('blog/<slug:path>/',views.blog_detail,name='blog_detail'),
     path('color/<uuid:track_id>/',views.color,name='color'),
     path('place/<uuid:track_id>/',views.Place_view,name='place'),
     # path('place/<int:pk>/',views.Place_view,name='place'),

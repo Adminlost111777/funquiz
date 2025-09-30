@@ -48,8 +48,8 @@ def blog_list(request):
     blogs = Blog.objects.all()
     return render(request,"blog.html",{"blogs": blogs})
 
-def blog_detail(request, id):
-    blog = get_object_or_404(Blog, id=id)
+def blog_detail(request, path):
+    blog = get_object_or_404(Blog, slug=path) 
     context = {'blog': blog}
     return render(request, 'blog_detail.html', context)
 
