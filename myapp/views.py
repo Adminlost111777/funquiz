@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404,render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser, AnswerModel
+from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
@@ -43,6 +43,10 @@ def results(request, quiz_id):
     quiz = get_object_or_404(QuizModel, id=quiz_id)
     answers = quiz.answers.all()
     return render(request, "results.html", {"quiz": quiz, "answers": answers})
+
+def blog_list(request):
+    blogs = Blog.objects.all()
+    return render(request,"blog.html",{"blogs": blogs})
 
 def quiz_view(request):
     session_user = get_session_user(request)
