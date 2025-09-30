@@ -1,34 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<div class="container mt-5 px-3 text-center p-4 bg-white rounded shadow-sm" style="max-width:600px;">
+    
+    <!-- Hidden input for sharing -->
+    <input type="text" id="share-link" value="http://{{ request.get_host }}/play/{{ quiz.track_id }}" class="d-none">
+
+    <!-- Share button -->
+    <button type="button" onclick="shareQuiz()" class="btn btn-success btn-lg mb-3 w-100">
+        SHARE THIS LINK
+    </button>
+
+    <!-- Direct link for copy -->
+    <div class="text-center">
+        <a class="btn link-button w-100" href="http://{{ request.get_host }}/play/{{ quiz.track_id }}" target="_blank"><u>
+            {{ request.get_host }}/play/{{ quiz.track_id }}
+            </u>
+        </a>
+    </div>
+</div>
+
 <style>
-.container {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    padding: 30px 20px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-button {
-  
-    text-align: center;
-    border-radius: 10px;
-    font-size: 28px;
-    padding: 20px;
-    margin-bottom: 30px;
-}
-
 .link-button {
     display: inline-block;
-    word-break: break-all; /* allows long links to wrap */
-    padding: 15px 20px;
+    word-break: break-all;
+    padding: 12px;
     font-size: 16px;
     color: #fff;
-    background:blue; /* gradient button */
+    background: linear-gradient(to right, #e2eefb, #f2f3f5);
     border-radius: 10px;
     text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -36,28 +35,15 @@ button {
 
 .link-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(247, 198, 209, 0.5);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
-
 </style>
 
-<div class="container text-center">
-     <input type="text" id="share-link" value="http://{{ request.get_host }}/play/{{ quiz.track_id }}" readonly style="display:none;">
-    <button type="button" onclick="shareQuiz()" class="btn btn-success">SHARE THIS LINK</button>
-    <br>
-    <br>
-    <div style="text-align: center;">
-    <a class="link-button" href="http://{{ request.get_host }}/play/{{ quiz.track_id }}">
-       <u> http://{{ request.get_host }}/play/{{ quiz.track_id }}</u>
-    </a>
-</div>
-</div>
 <script>
 function shareQuiz() {
     const url = document.getElementById('share-link').value;
 
     if (navigator.share) {
-        // Mobile share
         navigator.share({
             title: 'Play this Quiz!',
             text: 'Check out this fun quiz!',
@@ -66,7 +52,6 @@ function shareQuiz() {
         .then(() => console.log('Shared successfully'))
         .catch((err) => console.log('Error sharing', err));
     } else {
-        // Fallback: copy link for desktop
         navigator.clipboard.writeText(url)
             .then(() => alert('Link copied to clipboard!'))
             .catch(() => alert('Could not copy link, please copy manually.'));
@@ -74,12 +59,7 @@ function shareQuiz() {
 }
 </script>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 {% endblock content %}
-
-
-
