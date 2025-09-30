@@ -7,12 +7,12 @@
 
 <div class="row">
     {% for subject in subjects %}
-    <div class="col-sm-6 col-12">
+    <div class="col-6 col-sm-4 col-md-3 mb-3">
         <div class=" h-100">
             <form method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="subject_id" value="{{forloop.counter0}}">
-                    <button type="submit"style="border:20px;"><img src="{{ subject.image }}" alt="{{ subject.name}}" class="card-img-top" style="height: 200px; object-fit: cover;width: 200px;"></button>
+                    <button type="submit"style="border:20px;"><img src="{{ subject.image }}" alt="{{ subject.name}}" class="img-fluid rounded" style="height: 200px; object-fit: cover;width: 200px;"></button>
             </form>
             
             <div class="card-body d-flex flex-column">
