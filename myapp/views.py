@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404,render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog
+from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
