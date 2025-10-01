@@ -22,6 +22,9 @@ urlpatterns = [
     path('play_place/<uuid:track_id>/',views.play_place,name='play_place'),
     path('play_hobbies/<uuid:track_id>/',views.play_hobbies,name='play_hobbies'),
     path('play_mood/<uuid:track_id>/',views.play_mood,name='play_mood'),
-    path('play_subject/<uuid:track_id>/',views.play_subject,name='play_subject')
+    path('play_subject/<uuid:track_id>/',views.play_subject,name='play_subject'),
+    path('contact_us/',views.contact_us,name='contact_us'),
+    path('aboutus/',views.about_us,name='about_us'),
+    path('privacy_policy',views.privacy_policy,name='privacy_policy')
     
 ]

@@ -1,36 +1,10 @@
 {% extends 'base.html' %}
-{% block content %}
-<style>
-    .container {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 20px;
-        border-radius: 10px;
-    }
-    .sticker{
-      padding-top: 30px;
-      font-size: 40px;
-      text-align: center;
-      animation: bounce 1s infinite alternate;
-    }
-    @keyframes bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-20px); }
-}
-     .nav-link{
-      padding: 12px 40px;
-      font-size: 20px;
-     }
 
-</style>
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    
-    <i class="fa fa-heart" style="font-size:50px;color:rgb(241, 86, 86);">
-    <b>FUN QUIZ</b></i>
-    <a href="{% url 'blog_list' %}" class="nav-link">Blog</a>
-  </div>
-</nav>
+{% block head_content %}
+<title>Test your Bond</title>
+{% endblock %}
+{% block content %}
+
 <div class="d-flex align-items-center">
   <div style="display: flex; align-items: center; gap: 40vh;">
   <h3 style="padding: 20px 30px;">Welcome To FUN QUIZ !<br>
