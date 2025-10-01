@@ -5,14 +5,13 @@
 {% endblock %}
 {% block content %}
 
-<div class="d-flex align-items-center">
-  <div class="d-flex flex-wrap align-items-center justify-content-center gap-3">
-  <h3 style="padding: 20px 30px;">Welcome To FUN QUIZ !<br>
+<div class="d-flex justify-content-center align-items-center  flex-column text-center py-5">
+  <h3  class="mb-4" style="padding: 20px 30px;">Welcome To FUN QUIZ !<br>
     <br>
     <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
       {% csrf_token %}
-      <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" style="width: 27vh;padding: 5px 10px;border-radius: 10px;">
-      <button type="text" value="submit" class="btn btn-primary" style="width:120px;">Save</button>
+      <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" class="form-control" style="width: 27vh;padding: 5px 10px;border-radius: 10px;">
+      <button type="text" class="btn btn-primary" style="width:120px;">Save</button>
     </form>
   </h3>
 </div>
