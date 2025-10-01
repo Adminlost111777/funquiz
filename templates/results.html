@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <h2>Results for Quiz {{ quiz.track_id }}</h2>
+    <h1>Results for Quiz {{ quiz.track_id }}</h1>
     <ul>
         {% for answer in answers %}
             <li>{{ answer.answered_by.username }} chose color ID: {{ answer.favorite_color_answer }}</li>
