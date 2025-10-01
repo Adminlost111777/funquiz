@@ -56,24 +56,15 @@
             text-align: center;
         }
 
-        footer a {
-            margin: 0 10px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
 </style>
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     
-    <i class="fa fa-heart" style="font-size:50px;color:rgb(241, 86, 86);">
-    <b>FUN QUIZ</b></i>
-    <div class="d-flex">
-    <a href="{% url 'home' %}" class="nav-link">Home</a>    
+    <a href="{% url 'home' %}" class="d-flex align-items-center text-decoration-none">
+    <i class="fa fa-heart" style="font-size:50px; color: rgb(241, 86, 86); margin-right: 10px;"></i>
+    <span style="font-size: 32px; font-weight: bold; color: #e45f5f;">FUN QUIZ</span>
+</a>
+    <div class="d-flex">  
     <a href="{% url 'blog_list' %}" class="nav-link">Blog</a>
     <a href="{% url 'about_us' %}" class="nav-link">About us</a>
     <a href="{% url 'privacy_policy' %}" class="nav-link">Privacy Policy</a>
