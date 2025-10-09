@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404,render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel
+from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,Physics
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
@@ -46,7 +46,18 @@ def create_quiz(request):
     print("Redirect: ",redirect_url)
     return redirect(redirect_url)
 
+def physics_quiz(request):
+    physics = Physics.objects.all()
+    return render(request,'physics.html',{"physics" : physics})
 
+def car_quiz(request):
+    return render(request,'car.html')
+
+def movie_quiz(request):
+    return render(request,'movie.html')
+
+def chemistry_quiz(request):
+    return render(request,'chemistry.html')
 
 def results(request, quiz_id):
     quiz = get_object_or_404(QuizModel, id=quiz_id)

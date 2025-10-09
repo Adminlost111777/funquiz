@@ -25,6 +25,11 @@ urlpatterns = [
     path('play_subject/<uuid:track_id>/',views.play_subject,name='play_subject'),
     path('contact_us/',views.contact_us,name='contact_us'),
     path('aboutus/',views.about_us,name='about_us'),
-    path('privacy_policy',views.privacy_policy,name='privacy_policy')
+    path('privacy_policy',views.privacy_policy,name='privacy_policy'),
+    path('physics_quiz/',views.physics_quiz,name='physics'),
+    path('car_quiz/',views.car_quiz,name='car'),
+    path('movie_quiz/',views.movie_quiz,name='movie'),
+    path('chemistry_quiz/',views.chemistry_quiz,name='chemistry')
+    
     
 ]
