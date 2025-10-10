@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404,render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,Physics
+from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,Physics,PhysicsAnswerModel,Physics2,Physics10,Physics3,Physics4,Physics5,Physics6,Physics7,Physics8,Physics9
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
@@ -46,9 +46,86 @@ def create_quiz(request):
     print("Redirect: ",redirect_url)
     return redirect(redirect_url)
 
-def physics_quiz(request):
-    physics = Physics.objects.all()
-    return render(request,'physics.html',{"physics" : physics})
+def physicsgame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    physicsanswermodel= PhysicsAnswerModel.objects.create(session_user=session_user)
+    print("Created: " , physicsanswermodel)
+
+    redirect_url = reverse('physics', kwargs={'track_id': physicsanswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+    
+def physics_quiz(request,track_id):
+    print(track_id)
+    physics= Physics.objects.all()
+    physicsanswer = PhysicsAnswerModel.objects.get(track_id=track_id)
+    print("quiz: ",physicsanswer)
+    if request.method == "POST":
+        physics_id = request.POST.get('physics_id')
+        print("id:",physics_id)
+        physicsanswer.physics_answer = physics_id
+        physicsanswer.save()
+
+        # We saved answer, now what next answer we want? we need to redurect there
+        redirect_url = reverse('physics2', kwargs={'track_id': physicsanswer.track_id})
+        return redirect(redirect_url)
+
+    return render(request,'physics.html',{'physics':physics})
+
+def physics2_quiz(request,track_id):
+    print(track_id)
+    physics2= Physics2.objects.all()
+    physicsanswer = PhysicsAnswerModel.objects.get(track_id=track_id)
+    print("quiz: ",physicsanswer)
+    if request.method == "POST":
+        physics2_id = request.POST.get('physics2_id')
+        print("id:",physics2_id)
+        physicsanswer.physics_answer = physics2_id
+        physicsanswer.save()
+
+        # We saved answer, now what next answer we want? we need to redurect there
+        redirect_url = reverse('physics3', kwargs={'track_id': physicsanswer.track_id})
+        return redirect(redirect_url)
+
+    return render(request,'physics2.html',{'physics2':physics2})
+
+def physics3_quiz(request):
+    physics3 = Physics3.objects.all()
+    return render(request, 'physics3.html', {'physics3': physics3})
+
+def physics4_quiz(request):
+    physics4 = Physics4.objects.all()
+    return render(request, 'physics4.html', {'physics4': physics4})
+
+def physics5_quiz(request):
+    physics5 = Physics5.objects.all()
+    return render(request, 'physics5.html', {'physics5': physics5})
+
+def physics6_quiz(request):
+    physics6 = Physics6.objects.all()
+    return render(request, 'physics6.html', {'physics6': physics6})
+
+def physics7_quiz(request):
+    physics7 = Physics7.objects.all()
+    return render(request, 'physics7.html', {'physics7': physics7})
+
+def physics8_quiz(request):
+    physics8 = Physics8.objects.all()
+    return render(request, 'physics8.html', {'physics8': physics8})
+
+def physics9_quiz(request):
+    physics9 = Physics9.objects.all()
+    return render(request, 'physics9.html', {'physics9': physics9})
+
+def physics10_quiz(request):
+    physics10 = Physics10.objects.all()
+    return render(request, 'physics10.html', {'physics10': physics10})
+
+  
+
+
 
 def car_quiz(request):
     return render(request,'car.html')
