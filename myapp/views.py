@@ -3,8 +3,9 @@ from uuid import uuid4
 from django.shortcuts import get_object_or_404,render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
+from django.contrib import messages
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,Physics,PhysicsAnswerModel,Physics2,Physics10,Physics3,Physics4,Physics5,Physics6,Physics7,Physics8,Physics9
+from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,PhysicsAnswerModel,Physics
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
@@ -45,87 +46,6 @@ def create_quiz(request):
     redirect_url = reverse('color', kwargs={'track_id': quiz.track_id})
     print("Redirect: ",redirect_url)
     return redirect(redirect_url)
-
-def physicsgame_quiz(request):
-    session_user = get_session_user(request)
-    print("session_user: ", session_user)
-    # You need sessionuser because irt sis compulsory but not track_id because ited
-    physicsanswermodel= PhysicsAnswerModel.objects.create(session_user=session_user)
-    print("Created: " , physicsanswermodel)
-
-    redirect_url = reverse('physics', kwargs={'track_id': physicsanswermodel.track_id})
-    print("Redirect: ",redirect_url)
-    return redirect(redirect_url)
-    
-def physics_quiz(request,track_id):
-    print(track_id)
-    physics= Physics.objects.all()
-    physicsanswer = PhysicsAnswerModel.objects.get(track_id=track_id)
-    print("quiz: ",physicsanswer)
-    if request.method == "POST":
-        physics_id = request.POST.get('physics_id')
-        print("id:",physics_id)
-        physicsanswer.physics_answer = physics_id
-        physicsanswer.save()
-
-        # We saved answer, now what next answer we want? we need to redurect there
-        redirect_url = reverse('physics2', kwargs={'track_id': physicsanswer.track_id})
-        return redirect(redirect_url)
-
-    return render(request,'physics.html',{'physics':physics})
-
-def physics2_quiz(request,track_id):
-    print(track_id)
-    physics2= Physics2.objects.all()
-    physicsanswer = PhysicsAnswerModel.objects.get(track_id=track_id)
-    print("quiz: ",physicsanswer)
-    if request.method == "POST":
-        physics2_id = request.POST.get('physics2_id')
-        print("id:",physics2_id)
-        physicsanswer.physics_answer = physics2_id
-        physicsanswer.save()
-
-        # We saved answer, now what next answer we want? we need to redurect there
-        redirect_url = reverse('physics3', kwargs={'track_id': physicsanswer.track_id})
-        return redirect(redirect_url)
-
-    return render(request,'physics2.html',{'physics2':physics2})
-
-def physics3_quiz(request):
-    physics3 = Physics3.objects.all()
-    return render(request, 'physics3.html', {'physics3': physics3})
-
-def physics4_quiz(request):
-    physics4 = Physics4.objects.all()
-    return render(request, 'physics4.html', {'physics4': physics4})
-
-def physics5_quiz(request):
-    physics5 = Physics5.objects.all()
-    return render(request, 'physics5.html', {'physics5': physics5})
-
-def physics6_quiz(request):
-    physics6 = Physics6.objects.all()
-    return render(request, 'physics6.html', {'physics6': physics6})
-
-def physics7_quiz(request):
-    physics7 = Physics7.objects.all()
-    return render(request, 'physics7.html', {'physics7': physics7})
-
-def physics8_quiz(request):
-    physics8 = Physics8.objects.all()
-    return render(request, 'physics8.html', {'physics8': physics8})
-
-def physics9_quiz(request):
-    physics9 = Physics9.objects.all()
-    return render(request, 'physics9.html', {'physics9': physics9})
-
-def physics10_quiz(request):
-    physics10 = Physics10.objects.all()
-    return render(request, 'physics10.html', {'physics10': physics10})
-
-  
-
-
 
 def car_quiz(request):
     return render(request,'car.html')
@@ -421,3 +341,103 @@ def calculator_view(request,track_id):
 
     percentage = round((point * 100.0)/6, 2)
     return render(request,'calculator.html',{'percentage':percentage})
+
+def physicscal_view(request,track_id):
+    quiz_attempt = get_object_or_404(PhysicsAnswerModel, track_id=track_id)
+
+    # Collect user answers
+    user_answers = [
+        quiz_attempt.physics_answer,
+        quiz_attempt.physics2_answer,
+        quiz_attempt.physics3_answer,
+        quiz_attempt.physics4_answer,
+        quiz_attempt.physics5_answer,
+    ]
+
+    # Get the first 5 questions from DB (ensure order matches quiz)
+    questions = list(Physics.objects.all()[:5])
+
+    total_questions = len(questions)
+    correct_count = 0
+
+    # Compare user answers with correct answers
+    for question, user_ans in zip(questions, user_answers):
+        if user_ans == question.correct_answer:
+            correct_count += 1
+
+    # Calculate percentage
+    percentage = round((correct_count / total_questions) * 100, 2) if total_questions > 0 else 0
+
+    # Optional: Prepare breakdown for template
+    results = []
+    for question, user_ans in zip(questions, user_answers):
+        results.append({
+            'question_text': question.question_text,
+            'user_answer': user_ans,
+            'correct_answer': question.correct_answer,
+            'is_correct': user_ans == question.correct_answer
+        })
+
+    return render(request, 'physicscal.html', {
+        'total': total_questions,
+        'correct': correct_count,
+        'percentage': percentage,
+        'results': results
+    })
+def physicsgame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    physicsanswermodel= PhysicsAnswerModel.objects.create(session_user=session_user)
+    print("Created: " , physicsanswermodel)
+
+    redirect_url = reverse('physics_quiz', kwargs={'track_id': physicsanswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+    
+def physics_quiz(request, track_id):
+    # Get the user's answer record
+    quiz_attempt = get_object_or_404(PhysicsAnswerModel, track_id=track_id)
+
+    # Track which answers have already been saved
+    answered_ids = [
+        quiz_attempt.physics_answer,
+        quiz_attempt.physics2_answer,
+        quiz_attempt.physics3_answer,
+        quiz_attempt.physics4_answer,
+        quiz_attempt.physics5_answer,
+    ]
+
+    # Get the next unanswered question
+    question = Physics.objects.exclude(id__in=[q for q in answered_ids if q]).first()
+
+    if not question:
+        # Quiz is complete
+        return redirect(reverse('physics', kwargs={'track_id': track_id}))
+
+    if request.method == "POST":
+        selected = request.POST.get('answer')
+        if selected:
+            selected = int(selected)
+
+            # Save answer in the first empty field
+            if quiz_attempt.physics_answer is None:
+                quiz_attempt.physics_answer = selected
+            elif quiz_attempt.physics2_answer is None:
+                quiz_attempt.physics2_answer = selected
+            elif quiz_attempt.physics3_answer is None:
+                quiz_attempt.physics3_answer = selected
+            elif quiz_attempt.physics4_answer is None:
+                quiz_attempt.physics4_answer = selected
+            elif quiz_attempt.physics5_answer is None:
+                quiz_attempt.physics5_answer = selected
+
+            quiz_attempt.save()
+
+            # Feedback
+
+            return redirect(reverse('physicscal', kwargs={'track_id': track_id}))
+        else:
+            messages.error(request, "Please select an option!")
+
+    return render(request, 'physics.html', {'question': question})

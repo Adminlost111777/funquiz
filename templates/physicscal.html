@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-5">
+  <!-- Title -->
+  <div class="text-center mb-4">
+    <h1 class="fw-bold text-primary">Quiz Completed!</h1>
+    <p class="lead">Here’s how you did:</p>
+  </div>
+
+  <!-- Score Card -->
+  <div class="card shadow-sm mx-auto" style="max-width: 500px; padding: 30px; border-radius: 1rem;">
+    <div class="card-body text-center">
+      <h2 class="fw-bold mb-3">Your Score</h2>
+      <p class="fs-4 mb-2">Correct Answers: <span class="text-success">{{ correct }}</span> / {{ total }}</p>
+      <p class="fs-4 mb-4">Percentage: <span class="text-primary">{{ percentage }}%</span></p>
+
+      {% if percentage == 100 %}
+        <p class="fs-5 text-success">🎉 Perfect! You got all questions right!</p>
+      {% elif percentage >= 60 %}
+        <p class="fs-5 text-warning">👍 Good job! Keep practicing to get 100%!</p>
+      {% else %}
+        <p class="fs-5 text-danger">💡 Don’t worry! Try again to improve your score!</p>
+      {% endif %}
+
+      <a href="{% url 'physicsgame_quiz'  %}" class="btn btn-primary mt-3">Try Again</a>
+      <a href="{% url 'home' %}" class="btn btn-outline-secondary mt-3">Back to Home</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
