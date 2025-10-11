@@ -405,31 +405,30 @@ def physics_quiz(request, track_id):
         'physics5_answer',
     ]
 
-    # Find first empty answer field
-    next_field = None
-    for field in answer_fields:
+    # Determine which question to show next
+    next_field_index = None
+    for i, field in enumerate(answer_fields):
         if getattr(quiz_attempt, field) is None:
-            next_field = field
+            next_field_index = i
             break
 
     # If all questions answered → redirect to results
-    if next_field is None:
+    if next_field_index is None:
         return redirect(reverse('physicscal', kwargs={'track_id': track_id}))
 
-    # Get the next question
-    answered_ids = [getattr(quiz_attempt, f) for f in answer_fields if getattr(quiz_attempt, f)]
-    question = Physics.objects.exclude(id__in=answered_ids).first()
+    # Get the next question by index
+    question = Physics.objects.all()[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
         if selected:
             selected = int(selected)
-            # Save the selected answer in the next empty field
-            setattr(quiz_attempt, next_field, selected)
+            # Save the answer in the next empty field
+            setattr(quiz_attempt, answer_fields[next_field_index], selected)
             quiz_attempt.save()
 
             # Optional: feedback
-
+            
             # Redirect to load the next question
             return redirect(reverse('physics_quiz', kwargs={'track_id': track_id}))
         else:
