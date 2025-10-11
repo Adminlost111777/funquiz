@@ -31,7 +31,10 @@ urlpatterns = [
     path('physicscal/<uuid:track_id>/',views.physicscal_view,name='physicscal'),
     path('car_quiz/',views.car_quiz,name='car'),
     path('movie_quiz/',views.movie_quiz,name='movie'),
-    path('chemistry_quiz/',views.chemistry_quiz,name='chemistry')
+    path('chemistry_quiz/',views.chemistry_quiz,name='chemistry'),
+    path('car_quiz/<uuid:track_id>/',views.car_quiz,name='car'),
+    path('movie_quiz/<uuid:track_id>/',views.movie_quiz,name='movie'),
+    path('chemistry_quiz/<uuid:track_id>/',views.chemistry_quiz,name='chemistry'),
     
     
 ]

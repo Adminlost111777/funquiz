@@ -435,3 +435,12 @@ def physics_quiz(request, track_id):
             messages.error(request, "Please select an option!")
 
     return render(request, 'physics.html', {'question': question})
+
+def car_quiz(request):
+    return render(request,'car.html')
+
+def movie_quiz(request):
+    return render(request,'movie.html')
+
+def chemistry_quiz(request):
+    return render(request,'chemistry.html')
