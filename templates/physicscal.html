@@ -5,11 +5,11 @@
   <!-- Title -->
   <div class="text-center mb-4">
     <h1 class="fw-bold text-primary">Quiz Completed!</h1>
-    <p class="lead">Here’s how you did:</p>
+
   </div>
 
   <!-- Score Card -->
-  <div class="card shadow-sm mx-auto" style="max-width: 500px; padding: 30px; border-radius: 1rem;">
+  
     <div class="card-body text-center">
       <h2 class="fw-bold mb-3">Your Score</h2>
       <p class="fs-4 mb-2">Correct Answers: <span class="text-success">{{ correct }}</span> / {{ total }}</p>
@@ -27,6 +27,49 @@
       <a href="{% url 'home' %}" class="btn btn-outline-secondary mt-3">Back to Home</a>
     </div>
   </div>
-</div>
+<hr>
+<p class="text-center">A physics quiz is an engaging and interactive way for students, enthusiasts, and learners of all ages to test their understanding of the fundamental concepts of physics. Physics, being the study of matter, energy, and the interactions between them, encompasses a wide range of topics, from mechanics and thermodynamics to electricity, magnetism, and optics. <br> A well-structured physics quiz challenges participants to recall formulas, solve problems, and apply theoretical knowledge to practical scenarios. These quizzes can include multiple-choice questions, true or false statements, numerical problems, and conceptual questions that require critical thinking. For instance, a quiz may ask about the unit of force, the acceleration due to gravity, or the formula for kinetic energy, encouraging participants to think deeply about each concept rather than memorizing answers. Beyond testing knowledge, physics quizzes also promote analytical thinking and problem-solving skills. They help learners identify areas where they need improvement and reinforce concepts through repetition and practice. In classrooms, online platforms, or competitive settings, physics quizzes serve as a valuable educational tool by motivating learners to stay engaged with the subject. Additionally, quizzes can be tailored to different levels, from basic questions about motion and energy for beginners to advanced topics like quantum mechanics or relativity for higher-level learners. <br> By combining fun, competition, and learning, physics quizzes make the subject more accessible and less intimidating. They also encourage learners to explore real-world applications, such as understanding how forces work in everyday objects, the principles of electricity in devices, or the behavior of light and sound. Overall, a physics quiz is not just an assessment; it is an interactive learning experience that strengthens comprehension, nurtures curiosity, and develops a deeper appreciation for the laws that govern the universe. Through consistent practice and engagement, quizzes become an essential component of mastering physics concepts effectively.</p>
+<div class="container my-5" style="background-color: azure; padding-top: 40px;">
+  <h3 class="text-center fw-bold mb-4">Explore More</h3>
+   
+<div class="container my-5">
+  <div class="row g-4 justify-content-center">
+ <!-- Guess Car Quiz -->
+    <div class="col-6 col-sm-4 col-md-3">
+      <div class="card h-100 shadow-sm">
+        <a href="{% url 'car' %}" class="text-decoration-none text-dark">
+          <img src="https://hips.hearstapps.com/hmg-prod/images/vol-27-pcoty-2025-group-1-677dbc61d16c0.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">Guess Car Quiz</h5>
+            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+ <div class="col-6 col-sm-4 col-md-3">
+      <div class="card h-100 shadow-sm">
+        <a href="{% url 'movie' %}" class="text-decoration-none text-dark">
+          <img src="https://thehill.com/wp-content/uploads/sites/2/2022/05/e92ed228a6924420a8963bdc6c9ddef1.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">Guess Movie Quiz</h5>
+            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+      <div class="col-6 col-sm-4 col-md-3">
+      <div class="card h-100 shadow-sm">
+        <a href="{% url 'chemistry' %}" class="text-decoration-none text-dark">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeKyMd088AowWZ1f9oFh6GnfZqnii84ln6BA&s" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">Chemistry Quiz</h5>
+            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    </div>
+    </div>
+     </div>
 
 {% endblock content %}

@@ -345,38 +345,35 @@ def calculator_view(request,track_id):
 def physicscal_view(request,track_id):
     quiz_attempt = get_object_or_404(PhysicsAnswerModel, track_id=track_id)
 
-    # Collect user answers
-    user_answers = [
-        quiz_attempt.physics_answer,
-        quiz_attempt.physics2_answer,
-        quiz_attempt.physics3_answer,
-        quiz_attempt.physics4_answer,
-        quiz_attempt.physics5_answer,
+    # Map answers
+    answer_fields = [
+        'physics_answer',
+        'physics2_answer',
+        'physics3_answer',
+        'physics4_answer',
+        'physics5_answer',
     ]
+    user_answers = [getattr(quiz_attempt, f) for f in answer_fields]
 
-    # Get the first 5 questions from DB (ensure order matches quiz)
+    # Get first 5 questions from DB
     questions = list(Physics.objects.all()[:5])
-
     total_questions = len(questions)
     correct_count = 0
 
-    # Compare user answers with correct answers
-    for question, user_ans in zip(questions, user_answers):
-        if user_ans == question.correct_answer:
-            correct_count += 1
-
-    # Calculate percentage
-    percentage = round((correct_count / total_questions) * 100, 2) if total_questions > 0 else 0
-
-    # Optional: Prepare breakdown for template
+    # Calculate score
     results = []
     for question, user_ans in zip(questions, user_answers):
+        is_correct = user_ans == question.correct_answer
+        if is_correct:
+            correct_count += 1
         results.append({
             'question_text': question.question_text,
             'user_answer': user_ans,
             'correct_answer': question.correct_answer,
-            'is_correct': user_ans == question.correct_answer
+            'is_correct': is_correct
         })
+
+    percentage = round((correct_count / total_questions) * 100, 2)
 
     return render(request, 'physicscal.html', {
         'total': total_questions,
@@ -399,44 +396,42 @@ def physics_quiz(request, track_id):
     # Get the user's answer record
     quiz_attempt = get_object_or_404(PhysicsAnswerModel, track_id=track_id)
 
-    # Track which answers have already been saved
-    answered_ids = [
-        quiz_attempt.physics_answer,
-        quiz_attempt.physics2_answer,
-        quiz_attempt.physics3_answer,
-        quiz_attempt.physics4_answer,
-        quiz_attempt.physics5_answer,
+    # Map user answers to fields
+    answer_fields = [
+        'physics_answer',
+        'physics2_answer',
+        'physics3_answer',
+        'physics4_answer',
+        'physics5_answer',
     ]
 
-    # Get the next unanswered question
-    question = Physics.objects.exclude(id__in=[q for q in answered_ids if q]).first()
+    # Find first empty answer field
+    next_field = None
+    for field in answer_fields:
+        if getattr(quiz_attempt, field) is None:
+            next_field = field
+            break
 
-    if not question:
-        # Quiz is complete
-        return redirect(reverse('physics', kwargs={'track_id': track_id}))
+    # If all questions answered → redirect to results
+    if next_field is None:
+        return redirect(reverse('physicscal', kwargs={'track_id': track_id}))
+
+    # Get the next question
+    answered_ids = [getattr(quiz_attempt, f) for f in answer_fields if getattr(quiz_attempt, f)]
+    question = Physics.objects.exclude(id__in=answered_ids).first()
 
     if request.method == "POST":
         selected = request.POST.get('answer')
         if selected:
             selected = int(selected)
-
-            # Save answer in the first empty field
-            if quiz_attempt.physics_answer is None:
-                quiz_attempt.physics_answer = selected
-            elif quiz_attempt.physics2_answer is None:
-                quiz_attempt.physics2_answer = selected
-            elif quiz_attempt.physics3_answer is None:
-                quiz_attempt.physics3_answer = selected
-            elif quiz_attempt.physics4_answer is None:
-                quiz_attempt.physics4_answer = selected
-            elif quiz_attempt.physics5_answer is None:
-                quiz_attempt.physics5_answer = selected
-
+            # Save the selected answer in the next empty field
+            setattr(quiz_attempt, next_field, selected)
             quiz_attempt.save()
 
-            # Feedback
+            # Optional: feedback
 
-            return redirect(reverse('physicscal', kwargs={'track_id': track_id}))
+            # Redirect to load the next question
+            return redirect(reverse('physics_quiz', kwargs={'track_id': track_id}))
         else:
             messages.error(request, "Please select an option!")
 
