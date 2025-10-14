@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib import messages
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,PhysicsAnswerModel,Physics
+from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,PhysicsAnswerModel,Physics,MathAnswerModel,ChemistryAnswerModel,Chemistry,CarAnswerModel,Car,CapitalAnswerModel,Capital,Math,AnswerModel,Riddle,RiddleAnswerModel
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
@@ -47,15 +47,6 @@ def create_quiz(request):
     print("Redirect: ",redirect_url)
     return redirect(redirect_url)
 
-def car_quiz(request):
-    return render(request,'car.html')
-
-def movie_quiz(request):
-    return render(request,'movie.html')
-
-def chemistry_quiz(request):
-    return render(request,'chemistry.html')
-
 def results(request, quiz_id):
     quiz = get_object_or_404(QuizModel, id=quiz_id)
     answers = quiz.answers.all()
@@ -67,6 +58,7 @@ def blog_list(request):
 
 def blog_detail(request, path):
     blog = get_object_or_404(Blog, slug=path) 
+    Blog.objects.filter(is_published=True).all()
     context = {'blog': blog}
     return render(request, 'blog_detail.html', context)
 
@@ -342,6 +334,49 @@ def calculator_view(request,track_id):
     percentage = round((point * 100.0)/6, 2)
     return render(request,'calculator.html',{'percentage':percentage})
 
+def chemistrycal_view(request,track_id):
+    quiz_attempt = get_object_or_404(ChemistryAnswerModel, track_id=track_id)
+
+    # Map answers
+    answer_fields = [
+        'chemistry_answer',
+        'chemistry2_answer',
+        'chemistry3_answer',
+        'chemistry4_answer',
+        'chemistry5_answer',
+    ]
+    user_answers = [getattr(quiz_attempt, f) for f in answer_fields]
+
+    # Get first 5 questions from DB
+    questions = list(Chemistry.objects.all()[:5])
+    total_questions = len(questions)
+    correct_count = 0
+
+    # Calculate score
+    results = []
+    for question, user_ans in zip(questions, user_answers):
+        is_correct = user_ans == question.correct_answer
+        if is_correct:
+            correct_count += 1
+        results.append({
+            'question_text': question.question_text,
+            'user_answer': user_ans,
+            'correct_answer': question.correct_answer,
+            'is_correct': is_correct
+        })
+
+    if total_questions > 0:
+         percentage = round((correct_count / total_questions) * 100, 2)
+    else:
+         percentage = 0
+
+    return render(request, 'chemistrycal.html', {
+        'total': total_questions,
+        'correct': correct_count,
+        'percentage': percentage,
+        'results': results
+    })
+
 def physicscal_view(request,track_id):
     quiz_attempt = get_object_or_404(PhysicsAnswerModel, track_id=track_id)
 
@@ -381,6 +416,181 @@ def physicscal_view(request,track_id):
         'percentage': percentage,
         'results': results
     })
+
+def carcal_view(request,track_id):
+    quiz_attempt = get_object_or_404(CarAnswerModel, track_id=track_id)
+
+    # Map answers
+    answer_fields = [
+        'car_answer',
+        'car2_answer',
+        'car3_answer',
+        'car4_answer',
+        'car5_answer',
+        
+    ]
+    user_answers = [getattr(quiz_attempt, f) for f in answer_fields]
+
+    # Get first 5 questions from DB
+    questions = list(Car.objects.all()[:5])
+    total_questions = len(questions)
+    correct_count = 0
+
+    # Calculate score
+    results = []
+    for question, user_ans in zip(questions, user_answers):
+        is_correct = user_ans == question.correct_answer
+        if is_correct:
+            correct_count += 1
+        results.append({
+            'question_text': question.question_text,
+            'user_answer': user_ans,
+            'correct_answer': question.correct_answer,
+            'is_correct': is_correct
+        })
+
+    if total_questions > 0:
+         percentage = round((correct_count / total_questions) * 100, 2)
+    else:
+         percentage = 0
+
+    return render(request, 'carcal.html', {
+        'total': total_questions,
+        'correct': correct_count,
+        'percentage': percentage,
+        'results': results
+    })
+
+def capitalcal_view(request,track_id):
+    quiz_attempt = get_object_or_404(CapitalAnswerModel, track_id=track_id)
+
+    # Map answers
+    answer_fields = [
+        'capital_answer',
+        'capital2_answer',
+        'capital3_answer',
+        'capital4_answer',
+        'capital5_answer',
+    ]
+    user_answers = [getattr(quiz_attempt, f) for f in answer_fields]
+
+    # Get first 5 questions from DB
+    questions = list(Capital.objects.all()[:5])
+    total_questions = len(questions)
+    correct_count = 0
+
+    # Calculate score
+    results = []
+    for question, user_ans in zip(questions, user_answers):
+        is_correct = user_ans == question.correct_answer
+        if is_correct:
+            correct_count += 1
+        results.append({
+            'question_text': question.question_text,
+            'user_answer': user_ans,
+            'correct_answer': question.correct_answer,
+            'is_correct': is_correct
+        })
+
+    if total_questions > 0:
+         percentage = round((correct_count / total_questions) * 100, 2)
+    else:
+         percentage = 0
+
+    return render(request, 'capitalcal.html', {
+        'total': total_questions,
+        'correct': correct_count,
+        'percentage': percentage,
+        'results': results
+    })
+
+def riddlecal_view(request,track_id):
+    quiz_attempt = get_object_or_404(RiddleAnswerModel, track_id=track_id)
+
+    # Map answers
+    answer_fields = [
+        'riddle_answer',
+        'riddle2_answer',
+        'riddle3_answer',
+        'riddle4_answer',
+        'riddle5_answer',
+        
+    ]
+    user_answers = [getattr(quiz_attempt, f) for f in answer_fields]
+
+    # Get first 5 questions from DB
+    questions = list(Riddle.objects.all()[:5])
+    total_questions = len(questions)
+    correct_count = 0
+
+    # Calculate score
+    results = []
+    for question, user_ans in zip(questions, user_answers):
+        is_correct = user_ans == question.correct_answer
+        if is_correct:
+            correct_count += 1
+        results.append({
+            'question_text': question.question_text,
+            'user_answer': user_ans,
+            'correct_answer': question.correct_answer,
+            'is_correct': is_correct
+        })
+
+    if total_questions > 0:
+         percentage = round((correct_count / total_questions) * 100, 2)
+    else:
+         percentage = 0
+
+    return render(request, 'riddlecal.html', {
+        'total': total_questions,
+        'correct': correct_count,
+        'percentage': percentage,
+        'results': results
+    })
+
+def mathcal_view(request,track_id):
+    quiz_attempt = get_object_or_404(MathAnswerModel, track_id=track_id)
+
+    # Map answers
+    answer_fields = [
+        'math_answer',
+        'math2_answer',
+        'math3_answer',
+        'math4_answer',
+        'math5_answer',
+       
+    ]
+    user_answers = [getattr(quiz_attempt, f) for f in answer_fields]
+
+    # Get first 5 questions from DB
+    questions = list(Math.objects.all()[:5])
+    total_questions = len(questions)
+    correct_count = 0
+
+    # Calculate score
+    results = []
+    for question, user_ans in zip(questions, user_answers):
+        is_correct = user_ans == question.correct_answer
+        if is_correct:
+            correct_count += 1
+        results.append({
+            'question_text': question.question_text,
+            'user_answer': user_ans,
+            'correct_answer': question.correct_answer,
+            'is_correct': is_correct
+        })
+
+    if total_questions > 0:
+         percentage = round((correct_count / total_questions) * 100, 2)
+    else:
+         percentage = 0
+
+    return render(request, 'mathcal.html', {
+        'total': total_questions,
+        'correct': correct_count,
+        'percentage': percentage,
+        'results': results
+    })
 def physicsgame_quiz(request):
     session_user = get_session_user(request)
     print("session_user: ", session_user)
@@ -391,6 +601,286 @@ def physicsgame_quiz(request):
     redirect_url = reverse('physics_quiz', kwargs={'track_id': physicsanswermodel.track_id})
     print("Redirect: ",redirect_url)
     return redirect(redirect_url)
+
+def chemistrygame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    chemistryanswermodel= ChemistryAnswerModel.objects.create(session_user=session_user)
+    print("Created: " , chemistryanswermodel)
+
+    redirect_url = reverse('chemistry_quiz', kwargs={'track_id': chemistryanswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+
+def cargame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    caranswermodel= CarAnswerModel.objects.create(session_user=session_user)
+    print("Created: " , caranswermodel)
+
+    redirect_url = reverse('car_quiz', kwargs={'track_id': caranswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+
+def riddlegame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    riddleanswermodel= RiddleAnswerModel.objects.create(session_user=session_user)
+    print("Created: " ,riddleanswermodel)
+
+    redirect_url = reverse('riddle_quiz', kwargs={'track_id': riddleanswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+
+def mathgame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    mathanswermodel= MathAnswerModel.objects.create(session_user=session_user)
+    print("Created: " , mathanswermodel)
+
+    redirect_url = reverse('math_quiz', kwargs={'track_id': mathanswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+
+def capitalgame_quiz(request):
+    session_user = get_session_user(request)
+    print("session_user: ", session_user)
+    # You need sessionuser because irt sis compulsory but not track_id because ited
+    capitalanswermodel= CapitalAnswerModel.objects.create(session_user=session_user)
+    print("Created: " , capitalanswermodel)
+
+    redirect_url = reverse('capital_quiz', kwargs={'track_id': capitalanswermodel.track_id})
+    print("Redirect: ",redirect_url)
+    return redirect(redirect_url)
+
+def capital_quiz(request, track_id):
+    # Get the user's answer record
+    quiz_attempt = get_object_or_404(CapitalAnswerModel, track_id=track_id)
+
+    # Map user answers to fields
+    answer_fields = [
+        'capital_answer',
+        'capital2_answer',
+        'capital3_answer',
+        'capital4_answer',
+        'capital5_answer',
+        
+    ]
+
+    # Determine which question to show next
+    next_field_index = None
+    for i, field in enumerate(answer_fields):
+        if getattr(quiz_attempt, field) is None:
+            next_field_index = i
+            break
+
+    # If all questions answered → redirect to results
+    if next_field_index is None:
+        return redirect(reverse('capitalcal', kwargs={'track_id': track_id}))
+
+    # Get the next question by index
+    question =  Capital.objects.all()
+
+    if request.method == "POST":
+        selected = request.POST.get('answer')
+        if selected:
+            selected = int(selected)
+            # Save the answer in the next empty field
+            setattr(quiz_attempt, answer_fields[next_field_index], selected)
+            quiz_attempt.save()
+
+            # Optional: feedback
+            
+            # Redirect to load the next question
+            return redirect(reverse('capital_quiz', kwargs={'track_id': track_id}))
+        else:
+            messages.error(request, "Please select an option!")
+
+    return render(request, 'capital.html', {'question': question})
+
+def math_quiz(request, track_id):
+    # Get the user's answer record
+    quiz_attempt = get_object_or_404(MathAnswerModel, track_id=track_id)
+
+    # Map user answers to fields
+    answer_fields = [
+        'math_answer',
+        'math2_answer',
+        'math3_answer',
+        'math4_answer',
+        'math5_answer',
+        
+    ]
+
+    # Determine which question to show next
+    next_field_index = None
+    for i, field in enumerate(answer_fields):
+        if getattr(quiz_attempt, field) is None:
+            next_field_index = i
+            break
+
+    # If all questions answered → redirect to results
+    if next_field_index is None:
+        return redirect(reverse('mathcal', kwargs={'track_id': track_id}))
+
+    # Get the next question by index
+    question =  Math.objects.all()
+
+    if request.method == "POST":
+        selected = request.POST.get('answer')
+        if selected:
+            selected = int(selected)
+            # Save the answer in the next empty field
+            setattr(quiz_attempt, answer_fields[next_field_index], selected)
+            quiz_attempt.save()
+
+            # Optional: feedback
+            
+            # Redirect to load the next question
+            return redirect(reverse('math_quiz', kwargs={'track_id': track_id}))
+        else:
+            messages.error(request, "Please select an option!")
+
+    return render(request, 'math.html', {'question': question})
+
+def riddle_quiz(request, track_id):
+    # Get the user's answer record
+    quiz_attempt = get_object_or_404(RiddleAnswerModel, track_id=track_id)
+
+    # Map user answers to fields
+    answer_fields = [
+        'riddle_answer',
+        'riddle2_answer',
+        'riddle3_answer',
+        'riddle4_answer',
+        'riddle5_answer',
+        
+    ]
+
+    # Determine which question to show next
+    next_field_index = None
+    for i, field in enumerate(answer_fields):
+        if getattr(quiz_attempt, field) is None:
+            next_field_index = i
+            break
+
+    # If all questions answered → redirect to results
+    if next_field_index is None:
+        return redirect(reverse('riddlecal', kwargs={'track_id': track_id}))
+
+    # Get the next question by index
+    question =  Riddle.objects.all()
+
+    if request.method == "POST":
+        selected = request.POST.get('answer')
+        if selected:
+            selected = int(selected)
+            # Save the answer in the next empty field
+            setattr(quiz_attempt, answer_fields[next_field_index], selected)
+            quiz_attempt.save()
+
+            # Optional: feedback
+            
+            # Redirect to load the next question
+            return redirect(reverse('riddle_quiz', kwargs={'track_id': track_id}))
+        else:
+            messages.error(request, "Please select an option!")
+
+    return render(request, 'riddle.html', {'question': question})
+
+def car_quiz(request, track_id):
+    # Get the user's answer record
+    quiz_attempt = get_object_or_404(CarAnswerModel, track_id=track_id)
+
+    # Map user answers to fields
+    answer_fields = [
+        'car_answer',
+        'car2_answer',
+        'car3_answer',
+        'car4_answer',
+        'car5_answer',
+        
+    ]
+
+    # Determine which question to show next
+    next_field_index = None
+    for i, field in enumerate(answer_fields):
+        if getattr(quiz_attempt, field) is None:
+            next_field_index = i
+            break
+
+    # If all questions answered → redirect to results
+    if next_field_index is None:
+        return redirect(reverse('carcal', kwargs={'track_id': track_id}))
+
+    # Get the next question by index
+    question =  Car.objects.all()
+
+    if request.method == "POST":
+        selected = request.POST.get('answer')
+        if selected:
+            selected = int(selected)
+            # Save the answer in the next empty field
+            setattr(quiz_attempt, answer_fields[next_field_index], selected)
+            quiz_attempt.save()
+
+            # Optional: feedback
+            
+            # Redirect to load the next question
+            return redirect(reverse('car_quiz', kwargs={'track_id': track_id}))
+        else:
+            messages.error(request, "Please select an option!")
+
+    return render(request, 'car.html', {'question': question})
+    
+def chemsitry_quiz(request, track_id):
+    # Get the user's answer record
+    quiz_attempt = get_object_or_404(ChemistryAnswerModel, track_id=track_id)
+
+    # Map user answers to fields
+    answer_fields = [
+        'chemistry_answer',
+        'chemistry2_answer',
+        'chemistry3_answer',
+        'chemistry4_answer',
+        'chemistry5_answer',
+        
+    ]
+
+    # Determine which question to show next
+    next_field_index = None
+    for i, field in enumerate(answer_fields):
+        if getattr(quiz_attempt, field) is None:
+            next_field_index = i
+            break
+
+    # If all questions answered → redirect to results
+    if next_field_index is None:
+        return redirect(reverse('chemistrycal', kwargs={'track_id': track_id}))
+
+    # Get the next question by index
+    question =  Chemistry.objects.all()
+
+    if request.method == "POST":
+        selected = request.POST.get('answer')
+        if selected:
+            selected = int(selected)
+            # Save the answer in the next empty field
+            setattr(quiz_attempt, answer_fields[next_field_index], selected)
+            quiz_attempt.save()
+
+            # Optional: feedback
+            
+            # Redirect to load the next question
+            return redirect(reverse('chemsitry_quiz', kwargs={'track_id': track_id}))
+        else:
+            messages.error(request, "Please select an option!")
+
+    return render(request, 'chemistry.html', {'question': question})
     
 def physics_quiz(request, track_id):
     # Get the user's answer record
@@ -436,11 +926,6 @@ def physics_quiz(request, track_id):
 
     return render(request, 'physics.html', {'question': question})
 
-def car_quiz(request):
-    return render(request,'car.html')
+def test_bond(request):
 
-def movie_quiz(request):
-    return render(request,'movie.html')
-
-def chemistry_quiz(request):
-    return render(request,'chemistry.html')
+    return render(request,'testbond.html')

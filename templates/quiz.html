@@ -6,39 +6,64 @@
 {% block content %}
 
 <div class="d-flex justify-content-center align-items-center  flex-column text-center py-5">
-  <h3  class="mb-4" style="padding: 20px 30px;">Welcome To FUN QUIZ !<br>
+  <h3  class="mb-4" style="padding: 20px 30px; background-color: whitesmoke;">Welcome To FUN QUIZ !<br>
     <br>
+    <img src="https://i.pinimg.com/originals/62/ee/f3/62eef37f128f5ba474805bfa123d55bc.gif" alt=""><br>
+        <br>
     <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
       {% csrf_token %}
        <div class="form-floating">
       <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" class="form-control" style="width: 27vh;padding: 5px 10px;border-radius: 10px;">
       </div>
-      <button type="submit" class="btn btn-primary btn-lg w-50" style="width:120px;">Save</button>
+      <button type="submit" class="btn btn-primary btn-lg w-50" style="width:120px;">Save
+    </button>
     </form>
-  </h3>
 </div>
 </div>
-    <div class="sticker">
-  <img src="https://cdn-icons-png.flaticon.com/512/1141/1141102.png" alt="Star Sticker" style="height: 15rem;">
-</div>
-
-
-
-
-<div class=" text-center" style="padding-top: 30px;">
-
-<a href="{% url 'create_quiz' %}" style="text-decoration:none; background-color: rgb(253, 236, 236);padding: 12px 20px;margin-top: 50px;border: 2px solid; font-size: 30px;border-radius: 20px;max-width: 600px;height: 8rem;color: red;">Create QUIZ</a><br>
-<br>
  <!-- Quiz Cards -->
 <div class="container my-5">
   <div class="row g-4 justify-content-center">
+     <div class="col-6 col-sm-4 col-md-3">
+      <div class="card h-100 shadow-sm">
+          <a href="{% url 'create_quiz' %}" class="text-decoration-none text-dark">
+            <img src="https://i.gifer.com/embedded/download/37G7.gif" alt="Star Sticker" class="card-img-top" style="height: 250px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title">Create Quiz</h5>
+              <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-6 col-sm-4 col-md-3">
+      <div class="card h-100 shadow-sm">
+        <a href="{% url 'riddlegame_quiz'  %}" class="text-decoration-none text-dark">
+          <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">Riddle Me This</h5>
+            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  
     <!-- Physics Quiz -->
     <div class="col-6 col-sm-4 col-md-3">
       <div class="card h-100 shadow-sm">
         <a href="{% url 'physicsgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://t4.ftcdn.net/jpg/02/14/56/75/360_F_214567514_hGbTMUq06pJIGKiXA248l43E3hU9Q08x.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <img src="https://s.wsj.net/public/resources/images/OG-CW598_201907_GR_20190703173137.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
           <div class="card-body text-center">
             <h5 class="card-title">Physics Quiz</h5>
+            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-6 col-sm-4 col-md-3">
+      <div class="card h-100 shadow-sm">
+        <a href="{% url 'mathgame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUybmZwMDF5YjVsYmZiZjdwczh3enBzNDN6MGN5dW5waHJtbnB2eDVjbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/XbLWKGZrOOR1ByhX7n/giphy.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">Math Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
@@ -47,10 +72,10 @@
     <!-- Guess Car Quiz -->
     <div class="col-6 col-sm-4 col-md-3">
       <div class="card h-100 shadow-sm">
-        <a href="{% url 'car' %}" class="text-decoration-none text-dark">
-          <img src="https://hips.hearstapps.com/hmg-prod/images/vol-27-pcoty-2025-group-1-677dbc61d16c0.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <a href="{% url 'cargame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://i.pinimg.com/originals/41/10/76/4110761037c6f0f9627d5face2fb1017.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
           <div class="card-body text-center">
-            <h5 class="card-title">Guess Car Quiz</h5>
+            <h5 class="card-title"> Car Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
@@ -59,10 +84,10 @@
   
  <div class="col-6 col-sm-4 col-md-3">
       <div class="card h-100 shadow-sm">
-        <a href="{% url 'movie' %}" class="text-decoration-none text-dark">
-          <img src="https://thehill.com/wp-content/uploads/sites/2/2022/05/e92ed228a6924420a8963bdc6c9ddef1.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <a href="{% url 'capitalgame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://missiongeographyindia.wordpress.com/wp-content/uploads/2016/07/capitals.gif?w=384" class="card-img-top" style="height: 250px; object-fit: cover;">
           <div class="card-body text-center">
-            <h5 class="card-title">Guess Movie Quiz</h5>
+            <h5 class="card-title">World Capitals Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
@@ -70,8 +95,8 @@
     </div>
       <div class="col-6 col-sm-4 col-md-3">
       <div class="card h-100 shadow-sm">
-        <a href="{% url 'chemistry' %}" class="text-decoration-none text-dark">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeKyMd088AowWZ1f9oFh6GnfZqnii84ln6BA&s" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <a href="{% url 'chemistrygame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
           <div class="card-body text-center">
             <h5 class="card-title">Chemistry Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
@@ -101,9 +126,7 @@
     <div class="col-md-6 mb-3">
     
      <img src="https://cdn.vectorstock.com/i/500p/57/46/group-of-happy-kids-holding-hands-vector-20215746.jpg" alt="" class="img-fluid rounded">
-     <img src="https://png.pngtree.com/png-vector/20230905/ourmid/pngtree-have-fun-concept-excitement-png-image_9944945.png" alt=""> 
-
-
+     
     </div>
     <div class="col-md-6 text-md-start text-center">
       <h2>Challenge Friends</h2><br>
@@ -116,9 +139,6 @@
     <div class="col-md-6 mb-3">
     
      <img src="https://media.istockphoto.com/id/492418894/vector/fun-sign.jpg?s=612x612&w=0&k=20&c=hPUa8EdrNAyf2UuPWAIMFZYFsIGKxTX0kyPhPwZBu48=" class="img-fluid rounded" alt="">
-     <img src="https://png.pngtree.com/png-vector/20230905/ourmid/pngtree-have-fun-concept-excitement-png-image_9944945.png" alt=""> 
-
-
     </div>
     <div class="col-md-6 text-md-start text-center">
       <h2>Create Your Own Quiz</h2><br>
