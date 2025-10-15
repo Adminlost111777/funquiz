@@ -683,7 +683,11 @@ def capital_quiz(request, track_id):
         return redirect(reverse('capitalcal', kwargs={'track_id': track_id}))
 
     # Get the next question by index
-    question =  Capital.objects.all()
+    # Get all questions as a list
+    questions = list(Capital.objects.all()[:5])  # or your limit
+
+    # Pick the next question
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -731,7 +735,7 @@ def math_quiz(request, track_id):
     questions = list(Math.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions
+    question = questions[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
