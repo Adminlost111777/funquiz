@@ -727,8 +727,11 @@ def math_quiz(request, track_id):
     if next_field_index is None:
         return redirect(reverse('mathcal', kwargs={'track_id': track_id}))
 
-    # Get the next question by index
-    question =  Math.objects.all()
+    # Get all questions as a list
+    questions = list(Math.objects.all()[:5])  # or your limit
+
+    # Pick the next question
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -772,8 +775,12 @@ def riddle_quiz(request, track_id):
     if next_field_index is None:
         return redirect(reverse('riddlecal', kwargs={'track_id': track_id}))
 
-    # Get the next question by index
-    question =  Riddle.objects.all()
+        # Get the next question by index
+        # Get all questions as a list
+    questions = list(Riddle.objects.all()[:5])  # or your limit
+
+    # Pick the next question
+    question = questions[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -818,7 +825,11 @@ def car_quiz(request, track_id):
         return redirect(reverse('carcal', kwargs={'track_id': track_id}))
 
     # Get the next question by index
-    question =  Car.objects.all()
+        # Get all questions as a list
+    questions = list(Car.objects.all()[:5])  # or your limit
+
+    # Pick the next question
+    question = questions[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -863,7 +874,11 @@ def chemsitry_quiz(request, track_id):
         return redirect(reverse('chemistrycal', kwargs={'track_id': track_id}))
 
     # Get the next question by index
-    question =  Chemistry.objects.all()
+    # Get all questions as a list
+    questions = list(Chemistry.objects.all()[:5])  # or your limit
+
+    # Pick the next question
+    question = questions[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
