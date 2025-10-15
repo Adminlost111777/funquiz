@@ -687,7 +687,7 @@ def capital_quiz(request, track_id):
     questions = list(Capital.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions
+    question = questions[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
