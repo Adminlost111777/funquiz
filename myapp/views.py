@@ -852,7 +852,7 @@ def car_quiz(request, track_id):
 
     return render(request, 'car.html', {'question': question})
     
-def chemsitry_quiz(request, track_id):
+def chemistry_quiz(request, track_id):
     # Get the user's answer record
     quiz_attempt = get_object_or_404(ChemistryAnswerModel, track_id=track_id)
 
