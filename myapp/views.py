@@ -687,7 +687,7 @@ def capital_quiz(request, track_id):
     questions = list(Capital.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions[next_field_index]
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -735,7 +735,7 @@ def math_quiz(request, track_id):
     questions = list(Math.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions[next_field_index]
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -784,7 +784,7 @@ def riddle_quiz(request, track_id):
     questions = list(Riddle.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions[next_field_index]
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -833,7 +833,7 @@ def car_quiz(request, track_id):
     questions = list(Car.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions[next_field_index]
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')
@@ -882,7 +882,7 @@ def chemistry_quiz(request, track_id):
     questions = list(Chemistry.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions[next_field_index]
+    question = questions
 
     if request.method == "POST":
         selected = request.POST.get('answer')

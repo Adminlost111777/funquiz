@@ -5,17 +5,16 @@
 {% endblock %}
 {% block content %}
 
+
 <div class="d-flex justify-content-center align-items-center  flex-column text-center py-5">
-    <br>
-    <img src="https://i.pinimg.com/originals/62/ee/f3/62eef37f128f5ba474805bfa123d55bc.gif" alt=""><br>
-        <br>
-        <br>
+  <h2  class="mb-3" style="padding: 2px 8px; background-color: whitesmoke;color: rgb(69, 131, 172);border-radius: 20px;">Register Your Name
+    <hr>
     <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
       {% csrf_token %}
        <div class="form-floating">
-      <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" class="form-control" style="width: 27vh;padding: 5px 10px;border-radius: 10px;">
+      <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" class="form-control" style="width: 27vh;padding: 5px 5px;border-radius: 10px;">
       </div>
-      <button type="submit" class="btn btn-primary btn-lg w-50" style="width:120px;">Save
+      <button type="submit" class="btn btn-primary btn-lg w-50" style="width:100px;">Save
     </button>
     </form>
 </div>
