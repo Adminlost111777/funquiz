@@ -98,7 +98,7 @@
   padding: 10px 20px;
 }
 
-/* Links styling */
+/* Style the nav links */
 .nav-link {
   font-size: 1rem;
   font-weight: 500;
@@ -111,21 +111,26 @@
   color: rgb(241, 86, 86) !important;
 }
 
-/* Keep layout same across all devices */
+/* Keep the layout consistent across devices */
 @media (max-width: 600px) {
-  .navbar .container-fluid {
+  .container-fluid {
     flex-wrap: nowrap;
     overflow-x: auto;
   }
-  .navbar::-webkit-scrollbar {
-    display: none;
+
+  .nav-links {
+    overflow-x: auto;
+    white-space: nowrap;
   }
-  .nav-link {
-    flex-shrink: 0;
+
+  .nav-links::-webkit-scrollbar {
+    display: none; /* hide scroll bar on mobile */
   }
+
   .fa-heart {
     font-size: 26px !important;
   }
+
   .navbar span {
     font-size: 20px !important;
   }
@@ -143,16 +148,17 @@
     </a>
 
     <!-- Menu Links (always in one line) -->
-    <div class="d-flex align-items-center justify-content-end flex-nowrap">
+    <div class="d-flex align-items-center justify-content-end flex-nowrap nav-links">
       <a href="{% url 'blog_list' %}" class="nav-link text-dark me-3">Blog</a>
       <a href="{% url 'about_us' %}" class="nav-link text-dark me-3">About Us</a>
       <a href="{% url 'privacy_policy' %}" class="nav-link text-dark me-3">Privacy Policy</a>
       <a href="{% url 'contact_us' %}" class="nav-link text-dark me-3">Contact Us</a>
-      <a href="{% url 'test_bond' %}" class="nav-link text-dark me-3">Test Bond</a>
+      <a href="{% url 'test_bond' %}" class="nav-link text-dark">Test Bond</a>
     </div>
 
   </div>
 </nav>
+
 
 <body>
 
