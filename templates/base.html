@@ -96,10 +96,16 @@
     .nav-link {
       font-size: 1rem;
       margin-right: 10px;
+      font-weight: 500;
+      transition: color 0.2s ease;
     }
     .navbar{
-        background: whitesmoke
+        background: whitesmoke;
+        padding: 10px 20px;
     }
+    .nav-link:hover {
+        color: rgb(241, 86, 86);
+}
 
 </style>
 <nav class="navbar bg-body-tertiary">
@@ -107,9 +113,9 @@
     
     <a href="{% url 'home' %}" class="logo">
     <i class="fa fa-heart" style="font-size:50px; color: rgb(241, 86, 86); margin-right: 10px;"></i>
-    <span style="font-size: 32px; font-weight: bold; color: #e45f5f;">FUN QUIZ</span>
+    <span style="font-size: 28px; font-weight: bold; color: #e45f5f;">FUN QUIZ</span>
 </a>
-    <div class="d-flex" style="color: rgb(221, 128, 128);">  
+    <div class="d-flex flex-wrap justify-content-center align-items-center" style="color: rgb(221, 128, 128);">  
     <a href="{% url 'blog_list' %}" class="nav-link me-3">Blog</a>
     <a href="{% url 'about_us' %}" class="nav-link me-3">About us</a>
     <a href="{% url 'privacy_policy' %}" class="nav-link me-3">Privacy Policy</a>
