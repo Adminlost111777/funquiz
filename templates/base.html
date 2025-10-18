@@ -93,15 +93,14 @@
     }
 
     /* Navbar links */
-  /* Basic Navbar Style */
-.navbar {
+  .navbar {
   background: whitesmoke;
   padding: 10px 20px;
-  z-index: 9999; /* stays above all content */
+  z-index: 1000;
   border-bottom: 1px solid #ddd;
 }
 
-/* Links */
+/* Style links */
 .nav-link {
   font-size: 1rem;
   font-weight: 500;
@@ -114,15 +113,21 @@
   color: rgb(241, 86, 86) !important;
 }
 
-/* Keep same size on all screens */
-@media (max-width: 768px) {
+/* Keep everything in one line */
+.nav-links {
+  white-space: nowrap;
+  overflow-x: auto; /* allow horizontal scroll if needed */
+  scrollbar-width: none; /* hide scrollbar for Firefox */
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none; /* hide scrollbar for Chrome/Safari */
+}
+
+/* Adjust for small screens */
+@media (max-width: 600px) {
   .navbar {
     padding: 8px 12px;
-  }
-
-  .nav-link {
-    font-size: 0.9rem;
-    margin-right: 10px !important;
   }
 
   .fa-heart {
@@ -133,19 +138,8 @@
     font-size: 20px !important;
   }
 
-  /* Prevent wrapping */
-  .container-fluid {
-    flex-wrap: nowrap !important;
-  }
-
-  /* Force everything to fit in one line */
-  .navbar a, .navbar .nav-link {
-    white-space: nowrap;
-  }
-
-  /* Scale down links slightly if needed */
   .nav-link {
-    transform: scale(0.95);
+    font-size: 0.9rem;
   }
 }
 
@@ -154,25 +148,22 @@
   <div class="container-fluid d-flex justify-content-between align-items-center flex-nowrap">
 
     <!-- Logo -->
-    <a href="{% url 'home' %}" class="d-flex align-items-center text-decoration-none">
+    <a href="{% url 'home' %}" class="d-flex align-items-center text-decoration-none flex-shrink-0 me-3">
       <i class="fa fa-heart" style="font-size:30px; color: rgb(241, 86, 86); margin-right: 8px;"></i>
       <span style="font-size: 24px; font-weight: bold; color: #e45f5f;">FUN QUIZ</span>
     </a>
 
-    <!-- Menu Links (always visible, same layout) -->
-    <div class="d-flex align-items-center justify-content-end flex-nowrap">
-      <a href="{% url 'blog_list' %}" class="nav-link text-dark me-3">Blog</a>
-      <a href="{% url 'about_us' %}" class="nav-link text-dark me-3">About Us</a>
-      <a href="{% url 'privacy_policy' %}" class="nav-link text-dark me-3">Privacy Policy</a>
-      <a href="{% url 'contact_us' %}" class="nav-link text-dark me-3">Contact Us</a>
-      <a href="{% url 'test_bond' %}" class="nav-link text-dark me-3">Test Bond</a>
+    <!-- Menu Links (horizontal scroll on small devices) -->
+    <div class="d-flex align-items-center flex-nowrap nav-links overflow-auto">
+      <a href="{% url 'blog_list' %}" class="nav-link text-dark me-3 flex-shrink-0">Blog</a>
+      <a href="{% url 'about_us' %}" class="nav-link text-dark me-3 flex-shrink-0">About Us</a>
+      <a href="{% url 'privacy_policy' %}" class="nav-link text-dark me-3 flex-shrink-0">Privacy Policy</a>
+      <a href="{% url 'contact_us' %}" class="nav-link text-dark me-3 flex-shrink-0">Contact Us</a>
+      <a href="{% url 'test_bond' %}" class="nav-link text-dark me-3 flex-shrink-0">Test Bond</a>
     </div>
 
   </div>
 </nav>
-
-
-
 <body>
 
     {% block content %}
