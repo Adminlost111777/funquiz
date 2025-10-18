@@ -93,24 +93,44 @@
     }
 
     /* Navbar links */
-    .nav-link {
-      font-size: 1rem;
-      margin-right: 10px;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-    .navbar{
-        background: whitesmoke;
-        padding: 8px 15px;
-    }
-    .nav-link:hover {
-      
-      text-decoration: underline;
-    }
-    .nav-scroll {
-        white-space: nowrap;
-        scrollbar-width: none; /* hide scrollbar on Firefox */
-      }
+  .navbar {
+  background: whitesmoke;
+  padding: 10px 20px;
+}
+
+/* Links styling */
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: rgb(241, 86, 86) !important;
+}
+
+/* Keep layout same across all devices */
+@media (max-width: 600px) {
+  .navbar .container-fluid {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-link {
+    flex-shrink: 0;
+  }
+  .fa-heart {
+    font-size: 26px !important;
+  }
+  .navbar span {
+    font-size: 20px !important;
+  }
+}
+
 
 </style>
 <nav class="navbar shadow-sm fixed-top">
