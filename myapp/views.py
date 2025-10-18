@@ -53,7 +53,7 @@ def results(request, quiz_id):
     return render(request, "results.html", {"quiz": quiz, "answers": answers})
 
 def blog_list(request):
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.filter(is_published=True).all()
     return render(request,"blog.html",{"blogs": blogs})
 
 def blog_detail(request, path):
