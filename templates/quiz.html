@@ -27,10 +27,12 @@
   <div class="row g-4 justify-content-center">
      <div class="col-6 col-sm-4 col-md-3">
       <div class="card h-100 shadow-sm">
-          <a href="{% url 'create_quiz' %}" class="text-decoration-none text-dark">
             <img src="https://i.gifer.com/embedded/download/37G7.gif" alt="Star Sticker" class="card-img-top" style="height: 250px; object-fit: cover;">
             <div class="card-body text-center">
               <h5 class="card-title">Bond Quiz</h5>
+              <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">
+                Play Now
+              </button>
               <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
@@ -152,5 +154,12 @@
 
 
 </div>
+
+  <script>
+  function redirect(url) {
+  window.location.href = url
+  }
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock content %}
