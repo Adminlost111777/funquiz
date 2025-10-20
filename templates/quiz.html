@@ -5,106 +5,86 @@
 {% endblock %}
 {% block content %}
 <style>
- 
-  .pic {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-
-  
-}
-.pic img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  object-fit: cover;
-  
-
-}
-
+  h5.card-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .span.btn {
+    cursor: pointer;
+    color: rgb(190, 178, 10);
+  }
 </style>
-<br>
-<div class="container my-5 py-5" style="background-color: rgb(173, 228, 248);">
-  <div class="row">
-    <div class="col-md-7">
-  <div class="row g-4 justify-content-center">
-    <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm text-center">
-            <img src="https://i.gifer.com/embedded/download/37G7.gif" alt="Star Sticker" class="card-img-top" style="height: 250px; object-fit: cover;">
-            <div class="card-body text-center">
-              <h5 class="card-title">Bond Quiz</h5>
-              <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">
-                Play Now
-              </button>          
-            </div>
+<div class="container my-5 py-5" style="background-color: rgb(201, 249, 198);">
+  <h2 class="text-center mb-4" style="color: azure ;">Quizzes</h2>
+  
+  <!-- Horizontal scroll wrapper -->
+  <div class="quiz-cards-wrapper" style="overflow-x:auto; padding-bottom: 10px;">
+    <div class="d-flex flex-row gap-3"> 
+      <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
+        <img src="https://i.gifer.com/embedded/download/37G7.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Bond Quiz</h5>
+          <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">Play Now</button>
+        </div>
       </div>
-    </div>
-    <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
-        <a href="{% url 'riddlegame_quiz'  %}" class="text-decoration-none text-dark">
-          <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+       <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
+        <a href="{% url 'riddlegame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Riddle Me This</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
-  
-    <!-- Physics Quiz -->
-    <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
+
+      <!-- Physics Quiz -->
+      <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
         <a href="{% url 'physicsgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://s.wsj.net/public/resources/images/OG-CW598_201907_GR_20190703173137.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://s.wsj.net/public/resources/images/OG-CW598_201907_GR_20190703173137.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Physics Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
-    <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
+
+      <!-- Math Quiz -->
+      <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
         <a href="{% url 'mathgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUybmZwMDF5YjVsYmZiZjdwczh3enBzNDN6MGN5dW5waHJtbnB2eDVjbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/XbLWKGZrOOR1ByhX7n/giphy.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUybmZwMDF5YjVsYmZiZjdwczh3enBzNDN6MGN5dW5waHJtbnB2eDVjbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/XbLWKGZrOOR1ByhX7n/giphy.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Math Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
-   
-    <!-- Guess Car Quiz -->
-    <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
+  
+    <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
         <a href="{% url 'cargame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://i.pinimg.com/originals/41/10/76/4110761037c6f0f9627d5face2fb1017.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
-            <h5 class="card-title"> Car Quiz</h5>
+          <img src="https://i.pinimg.com/originals/41/10/76/4110761037c6f0f9627d5face2fb1017.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Car Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
-  
- <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
+
+      <!-- World Capitals Quiz -->
+      <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
         <a href="{% url 'capitalgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://missiongeographyindia.wordpress.com/wp-content/uploads/2016/07/capitals.gif?w=384" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://missiongeographyindia.wordpress.com/wp-content/uploads/2016/07/capitals.gif?w=384" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">World Capitals Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
-      <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
+
+      <!-- Chemistry Quiz -->
+      <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
         <a href="{% url 'chemistrygame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Chemistry Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
@@ -113,39 +93,39 @@
     </div>
   </div>
 </div>
-<div class="col-md-5 py-3" style="background-color: rgb(204, 234, 247);position: relative;">
-   <div class="d-flex justify-content-center align-items-center flex-column text-center py-5 px-3">
-  <h2 class="mb-3 p-3 bg-light text-primary rounded-3">
-    Register Your Name
-  </h2>
-  <div class="pic">
-   <img src="https://media2.giphy.com/media/WsSFNQkz3t9kJ8Ivnu/source.gif" alt="background">
-   </div>
-  <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 w-100" style="max-width: 300px; margin: auto;">
+<div class="container my-5 py-1" style="background-color: rgb(112, 184, 113); position: relative;">
+  <div class="d-flex justify-content-center align-items-center flex-column text-center py-5 px-3">
+
+    <h2 class="mb-3 p-3 rounded-3"style="color:white;">
+      Register Your Name
+    </h2>
+
+    <div class="pic mb-3">
+      <img src="https://media2.giphy.com/media/WsSFNQkz3t9kJ8Ivnu/source.gif" alt="background" class="img-fluid" style="max-width: 300px; height: auto;">
+    </div>
+
+    <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 w-100" style="max-width: 350px; margin: auto;">
       {% csrf_token %}
-      <div class="form-floating flex-grow-1">
+      <div class="form-floating flex-grow-1 mb-2 mb-sm-0">
         <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" 
-               class="form-control" style="min-width: 0; border-radius: 10px;">
-        <label> Enter Username</label>
+               class="form-control" style="border-radius: 10px;">
+        <label>Enter Username</label>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg mt-2 mt-sm-0">
+      <button type="submit" class="btn btn-primary btn-lg">
         Save
       </button> 
-      </form>
-      <hr>
-      <h2 style="color: rgb(28, 12, 106);margin-bottom: 20px;margin-top: 20px;">FUN QUIZ</h2>
-      <br>
-      <p style="text-align: center;color: rgb(25, 19, 113); margin-bottom: 40px;">FUN QUIZ is an interactive platform designed to make learning enjoyable through quizzes and challenges. Users can explore a wide range of topics such as Math, Physics, Chemistry, Cars, Riddles, and World Capitals. The platform allows players to challenge friends, compare scores, and test their knowledge in a fun, competitive way. Additionally, users can create their own custom quizzes, adding multiple-choice questions and sharing them with others for practice or entertainment. </p>
-      <br>
-      <img src="https://img.freepik.com/premium-vector/music-school-people-icons-set_98402-1522.jpg" alt="" style="object-fit: cover;width: 100%;height: auto;">
-      
-</div>
-</div>
-</div>
+    </form>
+
+    <hr class="my-4">
+
+    <h2 style="color: rgb(28, 12, 106); margin-bottom: 20px;">FUN QUIZ</h2>
+    
+    <p style="text-align: center; color: rgb(25, 19, 113); margin-bottom: 40px;">
+      FUN QUIZ is an interactive platform designed to make learning enjoyable through quizzes and challenges. Users can explore a wide range of topics such as Math, Physics, Chemistry, Cars, Riddles, and World Capitals. The platform allows players to challenge friends, compare scores, and test their knowledge in a fun, competitive way. Additionally, users can create their own custom quizzes, adding multiple-choice questions and sharing them with others for practice or entertainment.
+    </p> 
+  </div>
 </div>
 
- 
-  
 <div class="container my-5">
   <div class="row align-items-center flex-md-row-reverse">
     <div class="col-md-6 mb-3">
