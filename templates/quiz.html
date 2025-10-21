@@ -5,17 +5,217 @@
 {% endblock %}
 {% block content %}
 <style>
-  h5.card-title {
-    font-weight: bold;
-    font-size: 1.1rem;
+  .quiz-cards-wrapper .d-flex {
+  align-items: stretch;
+}
+
+.card {
+  width: 280px;             /* 👈 Equal width for all cards */
+  min-width: 280px;   
+  flex: 0 0 auto;
+  height: 370px; /* 👈 ensures all cards same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  
+}
+.card-body .btn {
+  margin-top: auto;  /* ✅ This aligns all buttons at the bottom */
+  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+  border: none;
+  border-radius: 50px;
+  padding: 6px 16px;
+  transition: 0.3s ease, transform 0.2s ease;
+}
+
+.btn {
+  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+  border: none;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* 📱 Responsive sizes for small devices */
+@media (max-width: 768px) {
+  .card {
+    height: 340px;
   }
-  .span.btn {
-    cursor: pointer;
-    color: rgb(190, 178, 10);
+  .card-img-top {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    height: 320px;
+  }
+  .card-img-top {
+    height: 160px;
+  }
+}
+
+  
+  .quiz-cards-wrapper {
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+  }
+
+  .quiz-cards-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .quiz-cards-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #6C63FF, #4E46E5);
+    border-radius: 10px;
+  }
+
+  /* --- Flex Layout --- */
+  .quiz-cards-wrapper .d-flex {
+    align-items: stretch; /* makes all cards equal height */
+  }
+
+  /* --- Card Styling --- */
+  .quiz-cards-wrapper .card {
+    min-width: 220px;
+    flex: 0 0 auto;
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(108, 99, 255, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 360px; /* ✅ consistent height for all cards */
+  }
+
+  .quiz-cards-wrapper .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(108, 99, 255, 0.3);
+  }
+
+  /* --- Image --- */
+  .quiz-cards-wrapper .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  /* --- Card Body --- */
+  .quiz-cards-wrapper .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .quiz-cards-wrapper .card-title {
+    color: #4E46E5;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  /* --- Buttons --- */
+  .quiz-cards-wrapper .btn-primary {
+    background: linear-gradient(90deg, #6C63FF, #4E46E5);
+    border: none;
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-weight: 500;
+    transition: 0.3s ease, transform 0.2s ease;
+  }
+
+  .quiz-cards-wrapper .btn-primary:hover {
+    background: linear-gradient(90deg, #4E46E5, #6C63FF);
+    transform: scale(1.05);
+  }
+
+  /* --- Responsive Design --- */
+  @media (max-width: 768px) {
+    .quiz-cards-wrapper .card {
+      min-width: 200px;
+      height: 320px;
+    }
+
+    .quiz-cards-wrapper .card-img-top {
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .quiz-cards-wrapper .card {
+      min-width: 180px;
+      height: 300px;
+    }
+
+    .quiz-cards-wrapper .card-img-top {
+      height: 140px;
+    }
+
+    .quiz-cards-wrapper .card-title {
+      font-size: 1rem;
+    }
+
+    .quiz-cards-wrapper .btn-primary {
+      padding: 5px 14px;
+      font-size: 0.85rem;
+    }
   }
 </style>
-<div class="container my-5 py-5" style="background-color: rgb(201, 249, 198);">
-  <h2 class="text-center mb-4" style="color: azure ;">Quizzes</h2>
+<div class="container my-5 py-1" style="background-color: rgb(250, 250, 252); position: relative;">
+  <div class="d-flex justify-content-center align-items-center flex-column text-center py-5 px-3">
+
+    <h2 class="mb-3 p-3 rounded-3">
+      Register Your Name
+    </h2>
+    <div class="pic mb-2">
+      <img src="https://media2.giphy.com/media/WsSFNQkz3t9kJ8Ivnu/source.gif" alt="background" class="img-fluid" style="max-width: 300px; height: auto;">
+    </div>
+
+    <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 w-100" style="max-width: 350px; margin: auto;">
+      {% csrf_token %}
+      <div class="form-floating flex-grow-1 mb-2 mb-sm-0">
+        <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" 
+               class="form-control" style="border-radius: 10px;">
+        <label>Enter Username</label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">
+        Save
+      </button> 
+    </form>
+    <hr class="my-4">
+    <h2 style=" margin-bottom: 20px;">FUN QUIZ</h2>
+    
+    <p style="text-align: center;">
+      FUN QUIZ is an interactive platform designed to make learning enjoyable through quizzes and challenges. Users can explore a wide range of topics such as Math, Physics, Chemistry, Cars, Riddles, and World Capitals. The platform allows players to challenge friends, compare scores, and test their knowledge in a fun, competitive way. Additionally, users can create their own custom quizzes, adding multiple-choice questions and sharing them with others for practice or entertainment.
+    </p> 
+  </div>
+</div>
+<div class="container my-5 py-5" style="background-color: white;">
+  <h2 class="text-center mb-4" style="color: rgb(115, 115, 247) ;">Quizzes</h2>
   
   <!-- Horizontal scroll wrapper -->
   <div class="quiz-cards-wrapper" style="overflow-x:auto; padding-bottom: 10px;">
@@ -26,7 +226,7 @@
           <h5 class="card-title">Bond Quiz</h5>
           <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">Play Now</button>
         </div>
-      </div>
+        </div>
        <div class="card text-center" style="min-width: 220px; flex: 0 0 auto;">
         <a href="{% url 'riddlegame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 200px; object-fit: cover;">
@@ -91,38 +291,6 @@
         </a>
       </div>
     </div>
-  </div>
-</div>
-<div class="container my-5 py-1" style="background-color: rgb(112, 184, 113); position: relative;">
-  <div class="d-flex justify-content-center align-items-center flex-column text-center py-5 px-3">
-
-    <h2 class="mb-3 p-3 rounded-3"style="color:white;">
-      Register Your Name
-    </h2>
-
-    <div class="pic mb-3">
-      <img src="https://media2.giphy.com/media/WsSFNQkz3t9kJ8Ivnu/source.gif" alt="background" class="img-fluid" style="max-width: 300px; height: auto;">
-    </div>
-
-    <form method="POST" class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 w-100" style="max-width: 350px; margin: auto;">
-      {% csrf_token %}
-      <div class="form-floating flex-grow-1 mb-2 mb-sm-0">
-        <input type="text" name="username" placeholder="Username" value="{{ session_user.username }}" 
-               class="form-control" style="border-radius: 10px;">
-        <label>Enter Username</label>
-      </div>
-      <button type="submit" class="btn btn-primary btn-lg">
-        Save
-      </button> 
-    </form>
-
-    <hr class="my-4">
-
-    <h2 style="color: rgb(28, 12, 106); margin-bottom: 20px;">FUN QUIZ</h2>
-    
-    <p style="text-align: center; color: rgb(25, 19, 113); margin-bottom: 40px;">
-      FUN QUIZ is an interactive platform designed to make learning enjoyable through quizzes and challenges. Users can explore a wide range of topics such as Math, Physics, Chemistry, Cars, Riddles, and World Capitals. The platform allows players to challenge friends, compare scores, and test their knowledge in a fun, competitive way. Additionally, users can create their own custom quizzes, adding multiple-choice questions and sharing them with others for practice or entertainment.
-    </p> 
   </div>
 </div>
 
