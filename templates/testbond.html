@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    .footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   height: 150px;
-   background-color: burlywood;
-   color: white;
-   text-align: center;
-}
-
 p{
     text-align: center;
     padding:20px 8px;
@@ -25,11 +14,44 @@ p{
         text-align: center;
     }
     
+.card-body .btn {
+  margin-top: auto;  /* ✅ This aligns all buttons at the bottom */
+  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+  border: none;
+  border-radius: 50px;
+  padding: 6px 16px;
+  transition: 0.3s ease, transform 0.2s ease;
+}
+
+.btn {
+  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+  border: none;
+}
+.card {
+  width: 280px;             /* 👈 Equal width for all cards */
+  min-width: 280px;   
+  flex: 0 0 auto;
+  height: 370px; /* 👈 ensures all cards same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+}
+.card-title {
+    color: #4E46E5;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+    
 </style>
 <body>
     <div class="container">
     <div class="content">
-    <h1>Test Bond</h1>
+    <h1 style="color: #4E46E5;">Test Bond</h1>
     <hr>
 <p>Challenge yourself and your friends with fun, creative, and thought-provoking quizzes that reveal how strong your connection truly is! Whether it’s friendship, love, or teamwork, each question helps you discover how well you really know each other. Laugh, guess, and share your results because the best bonds are built through fun and a little friendly competition.
   <div class="container my-5">
@@ -39,7 +61,7 @@ p{
             <img src="https://i.gifer.com/embedded/download/37G7.gif" alt="Star Sticker" class="card-img-top" style="height: 250px; object-fit: cover;">
             <div class="card-body text-center">
               <h5 class="card-title">Bond Quiz</h5>
-              <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">
+              <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2" >
                 Play Now
               </button>
           </div>
@@ -50,9 +72,7 @@ p{
   </div>
 </div>
 </div>
-</div>
-    <br>
-<div class="container my-5" style="background-color: azure; padding-top: 40px;">
+<div class="container my-5" >
   <h3 class="text-center fw-bold mb-4">Explore More</h3>
    
 <div class="container my-5">
@@ -101,7 +121,8 @@ p{
           </div>
         </a>
       </div>
-    </div><div class="col-6 col-sm-4 col-md-3">
+    </div>
+    <div class="col-6 col-sm-4 col-md-3">
       <div class="card h-100 shadow-sm">
         <a href="{% url 'chemistrygame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
@@ -122,7 +143,7 @@ p{
   }
 </script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% endblock content %}
 

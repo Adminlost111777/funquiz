@@ -2,12 +2,15 @@
 {% block content %}
 <style>
 .container{
-    background-color: whitesmoke;
+    background-color: white;
+    padding-top: 40px;
+}
+.img-fluid{
+    width: 100%;
 }
 </style>
-
 <div class="container">
-<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 50vh;">
     <div class="card p-4" style="width: 100%; max-width: 500px;">
         <h1 class="text-center mb-4">Contact Us</h1>
         <form>
@@ -24,9 +27,7 @@
 
             </div>
             </form>
-    </div>
-    </div>
-       
+           
 <hr>
   <div class="row justify-content-center">
     <!-- Contact Information -->
@@ -37,10 +38,14 @@
       </div>
     </div>
     </div>
-   
+      <!-- <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="https://i.pinimg.com/originals/e7/97/64/e797642ccdd53101135f3472fdac207a.gif" alt="" class="img-fluid rounded">
     </div>
-    </div>
+    </div> -->
      </div>
-    
+    </div>
+     </div> 
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock content %}

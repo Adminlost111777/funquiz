@@ -1,28 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    .footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   height: 150px;
-   background-color: burlywood;
-   color: white;
-   text-align: center;
-}
 
 p{
-    text-align: center;
+   
     padding:20px 8px;
 }
 .content {
-        background-color: whitesmoke;
+        background-color: white;
         margin: 50px auto;
         padding: 30px;
         border-radius: 10px;
         width: 80%;
         text-align: center;
+    }
+    img {
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 20px;
+        background: transparent;
     }
     
 </style>
@@ -31,13 +27,22 @@ p{
     <div class="content">
     <h1>About Us</h1>
     <hr>
-    <h2>Welcome to FunQuiz</h2>
+    <div class="row align-items-center">
+        <div class="col md-4 text-center">
+                <img src="https://i.pinimg.com/originals/44/bf/75/44bf75a5dd8f52c440e743cd0a3ec507.gif" alt="" class="img-fluid rounded">
+        </div>
+        <div class="col-md-8" style="text-align: justify;">
+            <p>The ultimate destination for everyone who loves learning while having fun! Our mission is to make quizzes exciting, engaging, and educational for users of all ages. Whether you’re testing your knowledge in physics, chemistry, movies, cars, or general trivia, FunQuiz offers a wide range of quizzes that challenge your mind and sharpen your skills.
+
+                We believe learning doesn’t have to be boring. That’s why every quiz on FunQuiz is designed to be interactive, visually appealing, and easy to navigate. From beginners to experts, our platform allows you to explore new topics, compete with friends, and track your progress in a fun, gamified way.
+
+                At FunQuiz, we’re passionate about creating a community where curiosity is celebrated and knowledge is rewarded. Our quizzes are carefully curated to ensure accuracy, variety, and entertainment, making sure every session is both educational and enjoyable..FunQuiz is a fun and interactive quiz app designed to make learning exciting and entertaining. Our goal is to bring people together through friendly challenges while helping everyone discover new facts in an enjoyable way. From general knowledge and pop culture to sports, movies, and brain teasers, FunQuiz offers something for everyone. We believe learning should never be boring, which is why every quiz is built to keep you engaged, curious, and smiling. With FunQuiz, it’s not just about the right answers it’s about the thrill of playing, sharing laughs with friends, and becoming a true quiz master.
+                </p>
+        </div>
+    </div>
     
-    <p>The ultimate destination for everyone who loves learning while having fun! Our mission is to make quizzes exciting, engaging, and educational for users of all ages. Whether you’re testing your knowledge in physics, chemistry, movies, cars, or general trivia, FunQuiz offers a wide range of quizzes that challenge your mind and sharpen your skills.
-
-We believe learning doesn’t have to be boring. That’s why every quiz on FunQuiz is designed to be interactive, visually appealing, and easy to navigate. From beginners to experts, our platform allows you to explore new topics, compete with friends, and track your progress in a fun, gamified way.
-
-At FunQuiz, we’re passionate about creating a community where curiosity is celebrated and knowledge is rewarded. Our quizzes are carefully curated to ensure accuracy, variety, and entertainment, making sure every session is both educational and enjoyable..FunQuiz is a fun and interactive quiz app designed to make learning exciting and entertaining. Our goal is to bring people together through friendly challenges while helping everyone discover new facts in an enjoyable way. From general knowledge and pop culture to sports, movies, and brain teasers, FunQuiz offers something for everyone. We believe learning should never be boring, which is why every quiz is built to keep you engaged, curious, and smiling. With FunQuiz, it’s not just about the right answers it’s about the thrill of playing, sharing laughs with friends, and becoming a true quiz master.</p>
+    
+    
 </div>
 </div>
 </body>
