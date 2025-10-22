@@ -2,13 +2,9 @@
 {% block content %}
 <style>
   .card-title {
-    color: #4E46E5;
+    
     font-weight: 600;
     margin-bottom: 10px;
-  }
-  .a{
-    color:
-     #4E46E5;
   }
   .card-body .btn {
   margin-top: auto;  /* ✅ This aligns all buttons at the bottom */
@@ -45,7 +41,7 @@
  </div>
   <div class="row">
     {% for blog in blogs %}
-    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+    <div class="col-10 col-sm-6 col-md-3">
       <div class="card h-100 shadow-sm">
         <a href="{% url 'blog_detail' blog.slug %}">
           <img src="{{ blog.image }}" alt="{{ blog.name }}" 

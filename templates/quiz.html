@@ -56,34 +56,6 @@
 .btn:hover {
   opacity: 0.9;
 }
-/* 🎯 Horizontal scroll for small devices */
-@media (max-width: 768px) {
-  .row.g-4 {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    justify-content: flex-start;
-    gap: 16px;
-    padding-bottom: 10px;
-  }
-
-  .row.g-4::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .row.g-4::-webkit-scrollbar-thumb {
-    background: #bdbcf9;
-    border-radius: 10px;
-  }
-
-  .row.g-4 > [class*='col-'] {
-    flex: 0 0 250px; /* Fixed card width for scroll */
-    scroll-snap-align: start;
-  }
-}
-
-
 
 </style>
 <div class="container my-5 py-1" style="background-color: rgb(238, 238, 248); position: relative;">
