@@ -45,7 +45,5 @@ urlpatterns = [
     path('carcal/<uuid:track_id>/',views.carcal_view,name='carcal'),
     path('cargame_quiz/',views.cargame_quiz,name='cargame_quiz'),
     path('test_bond/',views.test_bond,name='test_bond'),
-   
-    
-    
+
 ]
