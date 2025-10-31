@@ -895,7 +895,7 @@ def chemistry_quiz(request, track_id):
             # Optional: feedback
             
             # Redirect to load the next question
-            return redirect(reverse('chemsitry_quiz', kwargs={'track_id': track_id}))
+            return redirect(reverse('chemistry_quiz', kwargs={'track_id': track_id}))
         else:
             messages.error(request, "Please select an option!")
 
