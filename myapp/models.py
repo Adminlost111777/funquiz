@@ -325,7 +325,6 @@ class Blog(models.Model):
     name = models.CharField(max_length=200)
     image = models.CharField(max_length=200)
     content = HTMLField()
-    image2 = models.CharField(max_length=2000, null=True, blank=True)
     slug = models.SlugField(unique=True)
     is_published = models.BooleanField(default=False)
 
