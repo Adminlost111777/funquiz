@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib import messages
 
-from . models import Color, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,PhysicsAnswerModel,Physics,MathAnswerModel,ChemistryAnswerModel,Chemistry,CarAnswerModel,Car,CapitalAnswerModel,Capital,Math,AnswerModel,Riddle,RiddleAnswerModel
+from . models import Color,PersonAnswerModel, Place, Currentmood, Hobbies, Subjects, Flowers, QuizModel, SessionUser,Blog,AnswerModel,QuizModel,PhysicsAnswerModel,Physics,MathAnswerModel,ChemistryAnswerModel,Chemistry,CarAnswerModel,Car,CapitalAnswerModel,Capital,Math,AnswerModel,Riddle,RiddleAnswerModel,Person
 
 def get_session_user(request):
     track_id_session = request.session.get("track_id")
@@ -92,6 +92,23 @@ def color(request, track_id):
        return redirect(redirect_url)
 
    return render(request,'color.html',{'colors':colors})
+
+def person_quiz(request, track_id):
+   print(track_id)
+   personss= Person.objects.all()
+   quiz = QuizModel.objects.get(track_id=track_id)
+   print("quiz: ",quiz)
+   if request.method == "POST":
+       person_id = request.POST.get('person_id')
+       print("id:",person_id)
+       quiz.favorite_person_answer = person_id
+       quiz.save()
+
+       # We saved answer, now what next answer we want? we need to redurect there
+       redirect_url = reverse('test_bond', kwargs={'track_id': quiz.track_id})
+       return redirect(redirect_url)
+
+   return render(request,'person.html',{'personss':personss})
 
 def Flower_view(request,track_id):
     print(track_id)

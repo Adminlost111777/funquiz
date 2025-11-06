@@ -7,6 +7,13 @@ from dj_admin_plus.fields import HTMLField
 
 
 # Create your models here.
+class Person(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.name
+    
 class Color(models.Model):
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=2000)
@@ -85,6 +92,19 @@ class AnswerModel(models.Model):
 
     def __str__(self):
         return str(self.quiz.track_id)
+    
+class PersonAnswerModel(models.Model):
+    track_id = models.UUIDField(default=uuid.uuid4)
+    session_user = models.ForeignKey(to=SessionUser,on_delete=models.CASCADE)
+    person_answer = models.IntegerField(null=True,blank=True)
+    person2_answer = models.IntegerField(null=True, blank=True)
+    person3_answer = models.IntegerField(null=True, blank=True)
+    person4_answer = models.IntegerField(null=True, blank=True)
+    person5_answer = models.IntegerField(null=True, blank=True)
+    
+
+    def __str__(self):
+        return str(self.session_user)
     
 class Physics(models.Model):
     track_id = models.UUIDField(default=uuid.uuid4)
@@ -305,6 +325,7 @@ class Blog(models.Model):
     name = models.CharField(max_length=200)
     image = models.CharField(max_length=200)
     content = HTMLField()
+    image2 = models.CharField(max_length=2000, null=True, blank=True)
     slug = models.SlugField(unique=True)
     is_published = models.BooleanField(default=False)
 
