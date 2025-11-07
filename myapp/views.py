@@ -57,10 +57,15 @@ def blog_list(request):
     return render(request,"blog.html",{"blogs": blogs})
 
 def blog_detail(request, path):
-    blog = get_object_or_404(Blog, slug=path) 
+    blog = get_object_or_404(Blog, slug=path)
+    prev_blog = Blog.objects.filter(id__lt=blog.id).order_by('-id').first()
+    next_blog = Blog.objects.filter(id__lt=blog.id).order_by('id').first()
     Blog.objects.filter(is_published=True).all()
-    context = {'blog': blog}
-    return render(request, 'blog_detail.html', context)
+    return render(request, 'blog_detail.html', {
+        'blog' : blog,
+        'prev_blog' : prev_blog,
+        'next_blog' : next_blog,
+    })
 
 def quiz_view(request):
     session_user = get_session_user(request)
