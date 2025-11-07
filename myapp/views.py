@@ -817,7 +817,9 @@ def riddle_quiz(request, track_id):
 
             # Optional: feedback
             
-            # Redirect to load the next question
+            # Redirect to load the 
+            # 
+            #  question
             return redirect(reverse('riddle_quiz', kwargs={'track_id': track_id}))
         else:
             messages.error(request, "Please select an option!")
@@ -903,7 +905,7 @@ def chemistry_quiz(request, track_id):
     questions = list(Chemistry.objects.all()[:5])  # or your limit
 
     # Pick the next question
-    question = questions
+    question = questions[next_field_index]
 
     if request.method == "POST":
         selected = request.POST.get('answer')
