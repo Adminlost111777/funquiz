@@ -59,8 +59,8 @@ def blog_list(request):
 def blog_detail(request, path):
     blog = get_object_or_404(Blog, slug=path)
     prev_blog = Blog.objects.filter(id__lt=blog.id).order_by('-id').first()
-    next_blog = Blog.objects.filter(id__lt=blog.id).order_by('id').first()
-    Blog.objects.filter(is_published=True).all()
+    next_blog = Blog.objects.filter(id__gt=blog.id).order_by('id').first()
+   
     return render(request, 'blog_detail.html', {
         'blog' : blog,
         'prev_blog' : prev_blog,
