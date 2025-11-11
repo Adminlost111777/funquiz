@@ -8,7 +8,7 @@ p {
 }
 
 .content {
-  background-color: whitesmoke;
+  background-color: #c3e3fe;
   margin: 50px auto;
   padding: 30px;
   border-radius: 10px;
@@ -17,31 +17,28 @@ p {
 }
 
 .card-body .btn {
-  margin-top: auto;
-  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+  margin-top: auto;  /* ✅ This aligns all buttons at the bottom */
+  background: #4D96FF;
   border: none;
   border-radius: 50px;
   padding: 6px 16px;
   transition: 0.3s ease, transform 0.2s ease;
 }
-
 .btn {
-  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+ 
   border: none;
 }
-
 .card {
-  width: 280px;
-  min-width: 280px;
+  width: 100%;             /* 👈 Equal width for all cards */  
   flex: 0 0 auto;
-  height: 370px;
+  height: 100%; /* 👈 ensures all cards same height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 12px;
+  border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  margin: 5px;
+  
 }
 
 .card:hover {
@@ -49,7 +46,6 @@ p {
 }
 
 .card-title {
-  color: #4E46E5;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -59,16 +55,6 @@ p {
   .content {
     width: 95%;
     padding: 20px;
-  }
-
-  .card {
-    width: 100%;
-    min-width: unset;
-    height: auto;
-  }
-
-  .card img {
-    height: 200px !important;
   }
 
   h1 {
@@ -92,97 +78,104 @@ p {
 
 <div class="container">
   <div class="content">
-    <h1 style="color: #4E46E5;">Test Bond</h1>
+    <h1>Test Bond</h1>
     <hr>
     <p>
       Challenge yourself and your friends with fun, creative, and thought-provoking quizzes that reveal how strong your connection truly is! Whether it’s friendship, love, or teamwork, each question helps you discover how well you really know each other. Laugh, guess, and share your results because the best bonds are built through fun and a little friendly competition.
     </p>
-
-    <div class="container my-5">
-      <div class="row g-4 justify-content-center">
-        <div class="col-10 col-sm-6 col-md-3">
-          <div class="card h-100 shadow-sm">
-            <img src="https://i.gifer.com/embedded/download/37G7.gif" alt="Star Sticker" class="card-img-top" style="height: 250px; object-fit: cover;">
-            <div class="card-body text-center">
-              <h5 class="card-title">Bond Quiz</h5>
-              <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">Play Now</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
 <div class="container my-5">
-  <h3 class="text-center fw-bold mb-4">Explore More</h3>
   <div class="row g-4 justify-content-center">
     <!-- Riddle Quiz -->
-    <div class="col-10 col-sm-6 col-md-3">
-      <div class="card h-100 shadow-sm">
-        <a href="{% url 'riddlegame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
-            <h5 class="card-title">Riddle Me This</h5>
-            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card text-center">
+         <img src="https://i.gifer.com/embedded/download/37G7.gif" 
+          class="card-img-top" 
+          style="height: 300px; object-fit: cover;">
+         <div class="card-body">
+          <h5 class="card-title">Bond Quiz</h5>
+          <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">Play Now</button>
           </div>
-        </a>
-      </div>
-    </div>
+         </div>
+        </div>
 
-    <!-- Physics Quiz -->
-    <div class="col-10 col-sm-6 col-md-3">
-      <div class="card h-100 shadow-sm">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+         <div class="card text-center">
+          <a href="{% url 'riddlegame_quiz' %}" class="text-decoration-none text-dark">
+           <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
+           <div class="card-body">
+             <h5 class="card-title">Riddle Me This</h5>
+             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+            </div>
+           </a>
+          </div>
+        </div>
+
+      <!-- Physics Quiz -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card text-center">
         <a href="{% url 'physicsgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://s.wsj.net/public/resources/images/OG-CW598_201907_GR_20190703173137.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://s.wsj.net/public/resources/images/OG-CW598_201907_GR_20190703173137.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Physics Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
+      </div>
 
-    <!-- Math Quiz -->
-    <div class="col-10 col-sm-6 col-md-3">
-      <div class="card h-100 shadow-sm">
+      <!-- Math Quiz -->
+       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card text-center">
         <a href="{% url 'mathgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUybmZwMDF5YjVsYmZiZjdwczh3enBzNDN6MGN5dW5waHJtbnB2eDVjbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/XbLWKGZrOOR1ByhX7n/giphy.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUybmZwMDF5YjVsYmZiZjdwczh3enBzNDN6MGN5dW5waHJtbnB2eDVjbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/XbLWKGZrOOR1ByhX7n/giphy.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Math Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
-
-    <!-- Capitals Quiz -->
-    <div class="col-10 col-sm-6 col-md-3">
-      <div class="card h-100 shadow-sm">
-        <a href="{% url 'capitalgame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://missiongeographyindia.wordpress.com/wp-content/uploads/2016/07/capitals.gif?w=384" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+       <div class="card text-center">
+        <a href="{% url 'cargame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://i.pinimg.com/originals/41/10/76/4110761037c6f0f9627d5face2fb1017.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Car Quiz</h5>
+            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+          </div>
+        </a>
+      </div>
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+      <div class="card text-center">
+          <a href="{% url 'capitalgame_quiz' %}" class="text-decoration-none text-dark">
+          <img src="https://missiongeographyindia.wordpress.com/wp-content/uploads/2016/07/capitals.gif?w=384" class="card-img-top" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">World Capitals Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
-    </div>
+      </div>
 
-    <!-- Chemistry Quiz -->
-    <div class="col-10 col-sm-6 col-md-3">
-      <div class="card h-100 shadow-sm">
+      <!-- Chemistry Quiz -->
+       <div class="col-6 col-sm-4 col-md-3">
+       <div class="card text-center">
         <a href="{% url 'chemistrygame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top" style="height: 250px; object-fit: cover;">
-          <div class="card-body text-center">
+          <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top"
+           style="height: 300px; object-fit: cover;">
+          <div class="card-body">
             <h5 class="card-title">Chemistry Quiz</h5>
             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
           </div>
         </a>
       </div>
+      </div>
     </div>
 
+  </div>
+</div>
+</div>
   </div>
 </div>
 

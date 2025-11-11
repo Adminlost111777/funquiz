@@ -10,10 +10,9 @@
 }
 
 .card {
-  width: 400px;             /* 👈 Equal width for all cards */
-  min-width: 400px;   
+  width: 100%;             /* 👈 Equal width for all cards */  
   flex: 0 0 auto;
-  height: 450px; /* 👈 ensures all cards same height */
+  height: 100%; /* 👈 ensures all cards same height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -40,7 +39,7 @@
 }
 .card-body .btn {
   margin-top: auto;  /* ✅ This aligns all buttons at the bottom */
-  background: linear-gradient(90deg, #6C63FF, #4E46E5);
+  background: #4D96FF;
   border: none;
   border-radius: 50px;
   padding: 6px 16px;
@@ -55,7 +54,7 @@
 <!-- <div class="container my-5">
   <img src="https://media.licdn.com/dms/image/v2/C5612AQHvoqQlVj1zRw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1647142378148?e=2147483647&v=beta&t=QRtyYrq9Rtwy3nG3Lqvb5v1hwF3dzjSV0yiVvuseUsQ" alt="">
 </div> -->
-<div class="container my-5 py-1" style="background-color: rgb(238, 238, 248); position: relative;">
+<div class="container my-5 py-1" style="background-color: #afd9fe; position: relative;">
   <div class="d-flex flex-column  flex-md-row-reverse align-text-center gap-3">
     <div class="col-md-5 text-center mb-4 mb-md-0">
     <div class="pic mb-1">
@@ -85,32 +84,33 @@
   
   <!-- Horizontal scroll wrapper -->
   <div class="container py-4" >
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-8 col-md-4">
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card text-center">
-        <img src="https://i.gifer.com/embedded/download/37G7.gif" 
-        class="card-img-top" 
-        style="height: 300px; object-fit: cover;">
-        <div class="card-body">
+         <img src="https://i.gifer.com/embedded/download/37G7.gif" 
+          class="card-img-top" 
+          style="height: 300px; object-fit: cover;">
+         <div class="card-body">
           <h5 class="card-title">Bond Quiz</h5>
           <button onclick="redirect(`{% url 'create_quiz' %}`)" class="btn btn-primary btn-sm mt-2">Play Now</button>
+          </div>
+         </div>
         </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+         <div class="card text-center">
+          <a href="{% url 'riddlegame_quiz' %}" class="text-decoration-none text-dark">
+           <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
+           <div class="card-body">
+             <h5 class="card-title">Riddle Me This</h5>
+             <span class="btn btn-primary btn-sm mt-2">Play Now</span>
+            </div>
+           </a>
+          </div>
         </div>
-        </div>
-        <div class="col-12 col-sm-8 col-md-4">
-       <div class="card text-center">
-        <a href="{% url 'riddlegame_quiz' %}" class="text-decoration-none text-dark">
-          <img src="https://media.baamboozle.com/uploads/images/98541/1648042688_140077_gif-url.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">Riddle Me This</h5>
-            <span class="btn btn-primary btn-sm mt-2">Play Now</span>
-            </div>
-            </a>
-            </div>
-            </div>
 
       <!-- Physics Quiz -->
-        <div class="col-12 col-sm-8 col-md-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card text-center">
         <a href="{% url 'physicsgame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://s.wsj.net/public/resources/images/OG-CW598_201907_GR_20190703173137.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
@@ -123,7 +123,7 @@
       </div>
 
       <!-- Math Quiz -->
-       <div class="col-12 col-sm-8 col-md-4">
+       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card text-center">
         <a href="{% url 'mathgame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUybmZwMDF5YjVsYmZiZjdwczh3enBzNDN6MGN5dW5waHJtbnB2eDVjbyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/XbLWKGZrOOR1ByhX7n/giphy.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
@@ -134,7 +134,7 @@
         </a>
       </div>
       </div>
-      <div class="col-12 col-sm-8 col-md-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
        <div class="card text-center">
         <a href="{% url 'cargame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://i.pinimg.com/originals/41/10/76/4110761037c6f0f9627d5face2fb1017.gif" class="card-img-top" style="height: 300px; object-fit: cover;">
@@ -145,7 +145,7 @@
         </a>
       </div>
       </div>
-      <div class="col-12 col-sm-8 col-md-4">
+      <div class="col-6 col-sm-4 col-md-3">
       <div class="card text-center">
           <a href="{% url 'capitalgame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://missiongeographyindia.wordpress.com/wp-content/uploads/2016/07/capitals.gif?w=384" class="card-img-top" style="height: 300px; object-fit: cover;">
@@ -158,7 +158,7 @@
       </div>
 
       <!-- Chemistry Quiz -->
-       <div class="col-12 col-sm-8 col-md-4">
+       <div class="col-6 col-sm-4 col-md-3">
        <div class="card text-center">
         <a href="{% url 'chemistrygame_quiz' %}" class="text-decoration-none text-dark">
           <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZmhwZ2psM3pybG1wZWFyN2ZramM3d2VzcGRjMG13ODR2dm1wZzBrdiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/mACiRE5HiqioJDdeSR/source.gif" class="card-img-top"
